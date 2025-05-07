@@ -57,7 +57,7 @@
 | spartan | ![spartan/bust_spartan.png](spartan/bust_spartan.png) | ![spartan/glb_spartan.png](spartan/glb_spartan.png) | [spartan.glb](spartan/spartan.glb) | [spartan.md](spartan/spartan.md) |
 | spectra | ![spectra/bust_spectra.png](spectra/bust_spectra.png) | ![spectra/glb_spectra.png](spectra/glb_spectra.png) | [spectra.glb](spectra/spectra.glb) | [spectra.md](spectra/spectra.md) |
 | superfluid | ![superfluid/bust_superfluid.png](superfluid/bust_superfluid.png) | ![superfluid/glb_superfluid.png](superfluid/glb_superfluid.png) | [superfluid.glb](superfluid/superfluid.glb) | [superfluid.md](superfluid/superfluid.md) |
-| the-graph | ![the-graph/bust_the-graph.png](the-graph/bust_the-graph.png) | ![the-graph/glb_the_graph.png](the-graph/glb_the_graph.png) | [the-graph.glb](the-graph/the-graph.glb) | [the-graph.md](the-graph/the-graph.md) |
+| the-graph | ![the-graph/bust_the-graph.png](the-graph/bust_the-graph.png) | ![the-graph/glb_the-graph.png](the-graph/glb_the-graph.png) | [the-graph.glb](the-graph/the-graph.glb) | [the-graph.md](the-graph/the-graph.md) |
 | tron |  | ![tron/glb_tron.png](tron/glb_tron.png) | [tron.glb](tron/tron.glb) |  |
 | uniswap | ![uniswap/bust_uniswap.png](uniswap/bust_uniswap.png) | ![uniswap/glb_uniswap.png](uniswap/glb_uniswap.png) | [uniswap.glb](uniswap/uniswap.glb) | [uniswap.md](uniswap/uniswap.md) |
 | venus | ![venus/bust_venus.png](venus/bust_venus.png) | ![venus/glb_venus.png](venus/glb_venus.png) | [venus.glb](venus/venus.glb) | [venus.md](venus/venus.md) |
