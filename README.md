@@ -1,5 +1,7 @@
 # Avatars
 
+[Download json](data.json)
+
 | Avatar | Bust | GLB Preview | GLB File | Markdown |
 |---|---|---|---|---|
 | 0g |  | ![0g/glb_0g.png](0g/glb_0g.png) | [0g.glb](0g/0g.glb) |  |
