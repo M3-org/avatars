@@ -1,10 +1,8 @@
 # Avatars
 
-[Download json](data.json)
-
 | Avatar | Bust | GLB Preview | GLB File | Markdown |
 |---|---|---|---|---|
-| 0g |  | ![0g/glb_0g.png](0g/glb_0g.png) | [0g.glb](0g/0g.glb) |  |
+| 0g |  | ![0g/glb_0g.png](0g/glb_0g.png) | [0g.glb](0g/0g.glb) | [0g.md](0g/0g.md) |
 | 8ball |  |  |  |  |
 | aave | ![aave/bust_aave.png](aave/bust_aave.png) | ![aave/glb_aave.png](aave/glb_aave.png) | [aave.glb](aave/aave.glb) | [aave.md](aave/aave.md) |
 | aavegotchi | ![aavegotchi/bust_aavegotchi.png](aavegotchi/bust_aavegotchi.png) | ![aavegotchi/glb_aavegotchi.png](aavegotchi/glb_aavegotchi.png) | [aavegotchi.glb](aavegotchi/aavegotchi.glb) | [aavegotchi.md](aavegotchi/aavegotchi.md) |
@@ -12,7 +10,7 @@
 | aura | ![aura/bust_aura.png](aura/bust_aura.png) | ![aura/glb_aura.png](aura/glb_aura.png) | [aura.glb](aura/aura.glb) | [aura.md](aura/aura.md) |
 | balancer | ![balancer/bust_balancer.png](balancer/bust_balancer.png) | ![balancer/glb_balancer.png](balancer/glb_balancer.png) | [balancer.glb](balancer/balancer.glb) | [balancer.md](balancer/balancer.md) |
 | beam | ![beam/bust_beam.png](beam/bust_beam.png) | ![beam/glb_beam.png](beam/glb_beam.png) | [beam.glb](beam/beam.glb) | [beam.md](beam/beam.md) |
-| beff-ai |  |  |  |  |
+| beff-ai |  | ![beff-ai/glb_beff-ai.png](beff-ai/glb_beff-ai.png) | [beff-ai.glb](beff-ai/beff-ai.glb) |  |
 | berachain |  | ![berachain/glb_berachain.png](berachain/glb_berachain.png) | [berachain.glb](berachain/berachain.glb) |  |
 | celestia | ![celestia/bust_celestia.png](celestia/bust_celestia.png) | ![celestia/glb_celestia.png](celestia/glb_celestia.png) | [celestia.glb](celestia/celestia.glb) | [celestia.md](celestia/celestia.md) |
 | collab-land |  | ![collab-land/glb_collab-land.png](collab-land/glb_collab-land.png) | [collab-land.glb](collab-land/collab-land.glb) |  |
@@ -28,19 +26,19 @@
 | flashbots | ![flashbots/bust_flashbots.png](flashbots/bust_flashbots.png) | ![flashbots/glb_flashbots.png](flashbots/glb_flashbots.png) | [flashbots.glb](flashbots/flashbots.glb) | [flashbots.md](flashbots/flashbots.md) |
 | fluid | ![fluid/bust_fluid.png](fluid/bust_fluid.png) | ![fluid/glb_fluid.png](fluid/glb_fluid.png) | [fluid.glb](fluid/fluid.glb) | [fluid.md](fluid/fluid.md) |
 | frax | ![frax/bust_frax.png](frax/bust_frax.png) | ![frax/glb_frax.png](frax/glb_frax.png) | [frax.glb](frax/frax.glb) | [frax.md](frax/frax.md) |
-| fuel |  |  |  |  |
+| fuel |  |  | [fuel.glb](fuel/fuel.glb) |  |
 | gitcoin | ![gitcoin/bust_gitcoin.png](gitcoin/bust_gitcoin.png) | ![gitcoin/glb_gitcoin.png](gitcoin/glb_gitcoin.png) | [gitcoin.glb](gitcoin/gitcoin.glb) | [gitcoin.md](gitcoin/gitcoin.md) |
 | gmx | ![gmx/bust_gmx.png](gmx/bust_gmx.png) | ![gmx/glb_gmx.png](gmx/glb_gmx.png) | [gmx.glb](gmx/gmx.glb) | [gmx.md](gmx/gmx.md) |
 | gnon |  | ![gnon/glb_gnon.png](gnon/glb_gnon.png) | [gnon.glb](gnon/gnon.glb) |  |
 | gnosis | ![gnosis/bust_gnosis.png](gnosis/bust_gnosis.png) | ![gnosis/glb_gnosis.png](gnosis/glb_gnosis.png) | [gnosis.glb](gnosis/gnosis.glb) | [gnosis.md](gnosis/gnosis.md) |
-| hyperfy |  |  |  |  |
+| hyperfy |  | ![hyperfy/glb_hyperfy.png](hyperfy/glb_hyperfy.png) | [hyperfy.glb](hyperfy/hyperfy.glb) |  |
 | jupiter | ![jupiter/bust_jupiter.png](jupiter/bust_jupiter.png) | ![jupiter/glb_jupiter.png](jupiter/glb_jupiter.png) | [jupiter.glb](jupiter/jupiter.glb) | [jupiter.md](jupiter/jupiter.md) |
 | lido | ![lido/bust_lido.png](lido/bust_lido.png) | ![lido/glb_lido.png](lido/glb_lido.png) | [lido.glb](lido/lido.glb) | [lido.md](lido/lido.md) |
 | magic-eden |  | ![magic-eden/glb_magic-eden.png](magic-eden/glb_magic-eden.png) | [magic-eden.glb](magic-eden/magic-eden.glb) |  |
 | marc | ![marc/bust_marc.png](marc/bust_marc.png) | ![marc/glb_marc.png](marc/glb_marc.png) | [marc.glb](marc/marc.glb) | [marc.md](marc/marc.md) |
 | moonwell | ![moonwell/bust_moonwell.png](moonwell/bust_moonwell.png) | ![moonwell/glb_moonwell.png](moonwell/glb_moonwell.png) | [moonwell.glb](moonwell/moonwell.glb) | [moonwell.md](moonwell/moonwell.md) |
 | morpho | ![morpho/bust_morpho.png](morpho/bust_morpho.png) | ![morpho/glb_morpho.png](morpho/glb_morpho.png) | [morpho.glb](morpho/morpho.glb) | [morpho.md](morpho/morpho.md) |
-| nifty-island |  |  |  |  |
+| nifty-island |  | ![nifty-island/glb_nifty-island.png](nifty-island/glb_nifty-island.png) | [nifty-island.glb](nifty-island/nifty-island.glb) |  |
 | octant | ![octant/bust_octant.png](octant/bust_octant.png) | ![octant/glb_octant.png](octant/glb_octant.png) | [octant.glb](octant/octant.glb) | [octant.md](octant/octant.md) |
 | optimism | ![optimism/bust_optimism.png](optimism/bust_optimism.png) | ![optimism/glb_optimism.png](optimism/glb_optimism.png) | [optimism.glb](optimism/optimism.glb) | [optimism.md](optimism/optimism.md) |
 | paladin | ![paladin/bust_paladin.png](paladin/bust_paladin.png) | ![paladin/glb_paladin.png](paladin/glb_paladin.png) | [paladin.glb](paladin/paladin.glb) | [paladin.md](paladin/paladin.md) |
@@ -61,5 +59,5 @@
 | tron |  | ![tron/glb_tron.png](tron/glb_tron.png) | [tron.glb](tron/tron.glb) |  |
 | uniswap | ![uniswap/bust_uniswap.png](uniswap/bust_uniswap.png) | ![uniswap/glb_uniswap.png](uniswap/glb_uniswap.png) | [uniswap.glb](uniswap/uniswap.glb) | [uniswap.md](uniswap/uniswap.md) |
 | venus | ![venus/bust_venus.png](venus/bust_venus.png) | ![venus/glb_venus.png](venus/glb_venus.png) | [venus.glb](venus/venus.glb) | [venus.md](venus/venus.md) |
-| vitalik |  |  |  |  |
+| vitalik |  | ![vitalik/glb_vitalik.png](vitalik/glb_vitalik.png) | [vitalik.glb](vitalik/vitalik.glb) |  |
 | zerebro |  | ![zerebro/glb_zerebro.png](zerebro/glb_zerebro.png) | [zerebro.glb](zerebro/zerebro.glb) |  |
