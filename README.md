@@ -26,7 +26,7 @@
 | flashbots | ![flashbots/bust_flashbots.png](flashbots/bust_flashbots.png) | ![flashbots/glb_flashbots.png](flashbots/glb_flashbots.png) | [flashbots.glb](flashbots/flashbots.glb) | [flashbots.md](flashbots/flashbots.md) |
 | fluid | ![fluid/bust_fluid.png](fluid/bust_fluid.png) | ![fluid/glb_fluid.png](fluid/glb_fluid.png) | [fluid.glb](fluid/fluid.glb) | [fluid.md](fluid/fluid.md) |
 | frax | ![frax/bust_frax.png](frax/bust_frax.png) | ![frax/glb_frax.png](frax/glb_frax.png) | [frax.glb](frax/frax.glb) | [frax.md](frax/frax.md) |
-| fuel | ![fuel/bust_fuel.png](fuel/bust_fuel.png) |  | [fuel.glb](fuel/fuel.glb) | [fuel.md](fuel/fuel.md) |
+| fuel | ![fuel/bust_fuel.png](fuel/bust_fuel.png) | ![fuel/glb_fuel.png](fuel/glb_fuel.png) | [fuel.glb](fuel/fuel.glb) | [fuel.md](fuel/fuel.md) |
 | gitcoin | ![gitcoin/bust_gitcoin.png](gitcoin/bust_gitcoin.png) | ![gitcoin/glb_gitcoin.png](gitcoin/glb_gitcoin.png) | [gitcoin.glb](gitcoin/gitcoin.glb) | [gitcoin.md](gitcoin/gitcoin.md) |
 | gmx | ![gmx/bust_gmx.png](gmx/bust_gmx.png) | ![gmx/glb_gmx.png](gmx/glb_gmx.png) | [gmx.glb](gmx/gmx.glb) | [gmx.md](gmx/gmx.md) |
 | gnon | ![gnon/bust_gnon.png](gnon/bust_gnon.png) | ![gnon/glb_gnon.png](gnon/glb_gnon.png) | [gnon.glb](gnon/gnon.glb) | [gnon.md](gnon/gnon.md) |
@@ -46,7 +46,7 @@
 | polygon | ![polygon/bust_polygon.png](polygon/bust_polygon.png) | ![polygon/glb_polygon.png](polygon/glb_polygon.png) | [polygon.glb](polygon/polygon.glb) | [polygon.md](polygon/polygon.md) |
 | reserve | ![reserve/bust_reserve.png](reserve/bust_reserve.png) | ![reserve/glb_reserve.png](reserve/glb_reserve.png) | [reserve.glb](reserve/reserve.glb) | [reserve.md](reserve/reserve.md) |
 | rocketpool | ![rocketpool/bust_rocketpool.png](rocketpool/bust_rocketpool.png) | ![rocketpool/glb_rocketpool.png](rocketpool/glb_rocketpool.png) | [rocketpool.glb](rocketpool/rocketpool.glb) | [rocketpool.md](rocketpool/rocketpool.md) |
-| ropraito |  | ![ropraito/glb_ropraito.png](ropraito/glb_ropraito.png) | [ropraito.glb](ropraito/ropraito.glb) | [ropraito.md](ropraito/ropraito.md) |
+| ropraito | ![ropraito/bust_ropraito.png](ropraito/bust_ropraito.png) | ![ropraito/glb_ropraito.png](ropraito/glb_ropraito.png) | [ropraito.glb](ropraito/ropraito.glb) | [ropraito.md](ropraito/ropraito.md) |
 | safe | ![safe/bust_safe.png](safe/bust_safe.png) | ![safe/glb_safe.png](safe/glb_safe.png) | [safe.glb](safe/safe.glb) | [safe.md](safe/safe.md) |
 | scroll | ![scroll/bust_scroll.png](scroll/bust_scroll.png) | ![scroll/glb_scroll.png](scroll/glb_scroll.png) | [scroll.glb](scroll/scroll.glb) | [scroll.md](scroll/scroll.md) |
 | shaw-ai | ![shaw-ai/bust_shaw-ai.png](shaw-ai/bust_shaw-ai.png) | ![shaw-ai/glb_shaw-ai.png](shaw-ai/glb_shaw-ai.png) | [shaw-ai.glb](shaw-ai/shaw-ai.glb) | [shaw-ai.md](shaw-ai/shaw-ai.md) |
