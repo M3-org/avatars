@@ -1,0 +1,23 @@
+{
+    "hips": "CC_Base_Hip",
+    "spine": "CC_Base_Spine01",
+    "chest": "CC_Base_Spine02",
+    "neck": "CC_Base_NeckTwist01",
+    "head": "CC_Base_Head",
+    "leftUpperLeg": "CC_Base_L_Thigh",
+    "leftLowerLeg": "CC_Base_L_Calf",
+    "leftFoot": "CC_Base_L_Foot",
+    "leftToes": "CC_Base_L_ToeBase",
+    "rightUpperLeg": "CC_Base_R_Thigh",
+    "rightLowerLeg": "CC_Base_R_Calf",
+    "rightFoot": "CC_Base_R_Foot",
+    "rightToes": "CC_Base_R_ToeBase",
+    "leftShoulder": "CC_Base_L_Clavicle",
+    "leftUpperArm": "CC_Base_L_Upperarm",
+    "leftLowerArm": "CC_Base_L_Forearm",
+    "leftHand": "CC_Base_L_Hand",
+    "rightShoulder": "CC_Base_R_Clavicle",
+    "rightUpperArm": "CC_Base_R_Upperarm",
+    "rightLowerArm": "CC_Base_R_Forearm",
+    "rightHand": "CC_Base_R_Hand"
+}

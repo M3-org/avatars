@@ -1,0 +1,16 @@
+{
+    "leftUpperLeg": "thigh_stretch_l",
+    "leftLowerLeg": "leg_stretch_l",
+    "leftFoot": "foot_l",
+    "rightUpperLeg": "thigh_stretch_r",
+    "rightLowerLeg": "leg_stretch_r",
+    "rightFoot": "foot_r",
+    "leftShoulder": "shoulder_l",
+    "leftUpperArm": "arm_stretch_l",
+    "leftLowerArm": "forearm_stretch_l",
+    "leftHand": "hand_l",
+    "rightShoulder": "shoulder_r",
+    "rightUpperArm": "arm_stretch_r",
+    "rightLowerArm": "forearm_stretch_r",
+    "rightHand": "hand_r"
+}

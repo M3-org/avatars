@@ -1,0 +1,21 @@
+{
+    "hips": "J_Bip_C_Hips",
+    "spine": "J_Bip_C_Spine",
+    "chest": "J_Bip_C_Chest",
+    "neck": "J_Bip_C_Neck",
+    "head": "J_Bip_C_Head",
+    "leftUpperLeg": "J_Bip_L_UpperLeg",
+    "leftLowerLeg": "J_Bip_L_LowerLeg",
+    "leftFoot": "J_Bip_L_Foot",
+    "rightUpperLeg": "J_Bip_R_UpperLeg",
+    "rightLowerLeg": "J_Bip_R_LowerLeg",
+    "rightFoot": "J_Bip_R_Foot",
+    "leftShoulder": "J_Bip_L_Shoulder",
+    "leftUpperArm": "J_Bip_L_UpperArm",
+    "leftLowerArm": "J_Bip_L_LowerArm",
+    "leftHand": "J_Bip_L_Hand",
+    "rightShoulder": "J_Bip_R_Shoulder",
+    "rightUpperArm": "J_Bip_R_UpperArm",
+    "rightLowerArm": "J_Bip_R_LowerArm",
+    "rightHand": "J_Bip_R_Hand"
+}
