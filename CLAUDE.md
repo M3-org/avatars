@@ -29,7 +29,7 @@ The repository follows a consistent directory structure:
 ### Generate Metadata Files
 To regenerate metadata files after adding new avatars:
 ```bash
-python scripts/generate_all_metadata.py
+python scripts/metadata.py
 ```
 
 Options:
@@ -37,6 +37,25 @@ Options:
 - `--csv`: Generate avatars.csv for spreadsheet use
 - `--readme`: Generate README.md with markdown tables
 - `--all`: Generate all files (default)
+
+### Validate Repository
+To check for missing files and naming issues:
+```bash
+python scripts/validate.py
+```
+
+Options:
+- `--format json`: Output in JSON format for automation
+- `--missing-only`: Show only missing files
+- `--exit-code`: Exit with error code for CI/CD integration
+
+### Generate Thumbnails
+To generate missing thumbnails using AI:
+```bash
+python scripts/thumbnails.py --list missing.txt --which bust
+```
+
+Requires `OPENROUTER_API_KEY` environment variable. Uses green background chroma keying for transparency.
 
 ### Convert FBX to VRM (Blender Required)
 For converting FBX models to VRM format:
