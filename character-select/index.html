@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Avatars Showcase</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Audio -->
+    <audio id="bgMusic" loop>
+        <source src="arcadebg.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Sound Effects -->
+    <audio id="hoverSound" preload="auto">
+        <source src="sound/Bleeps/beep.wav" type="audio/wav">
+    </audio>
+
+    <audio id="selectSound" preload="auto">
+        <source src="sound/Bleeps/selectbleep.wav" type="audio/wav">
+    </audio>
+
+    <audio id="closeSound" preload="auto">
+        <source src="sound/Bleeps/beepdown.wav" type="audio/wav">
+    </audio>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="title">
+                <span class="title-main">SELECT YOUR CHARACTER</span>
+                <span class="title-sub">Character Selection</span>
+            </h1>
+            <div class="controls">
+                <button id="musicToggle" class="control-btn">🎵 MUSIC</button>
+                <button id="soundToggle" class="control-btn">🔊 SFX</button>
+                <button id="viewToggle" class="control-btn">📱 VIEW</button>
+                <button id="darkModeToggle" class="control-btn">🌙 DARK</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Character Grid -->
+        <section class="character-grid" id="characterGrid">
+            <!-- Characters will be loaded here -->
+        </section>
+
+        <!-- Character Detail Modal -->
+        <div class="character-modal" id="characterModal">
+            <div class="modal-content">
+                <button class="close-btn" id="closeModal">&times;</button>
+                <div class="character-detail">
+                    <div class="character-header">
+                        <div class="character-images">
+                            <img class="character-large-image" id="characterLargeImage" src="" alt="">
+                            <img class="character-glb-image" id="characterGLBImage" src="" alt="">
+                        </div>
+                        <div class="character-info">
+                            <div class="character-name-section">
+                                <h2 class="character-name" id="characterName"></h2>
+                                <button class="copy-btn" id="copyBio" title="Copy character bio">📋</button>
+                            </div>
+                            <div class="character-stats">
+                                <div class="stat">
+                                    <span class="stat-label">TYPE:</span>
+                                    <span class="stat-value" id="characterType">DeFi Protocol</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">STATUS:</span>
+                                    <span class="stat-value">ACTIVE</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="character-bio-section">
+                        <div class="bio-header">
+                            <h3>Character Bio</h3>
+                        </div>
+                        <div class="character-bio" id="characterBio">
+                            <!-- Bio content will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="character-actions">
+                        <button class="action-btn primary" id="viewGLB">VIEW 3D MODEL</button>
+                        <button class="action-btn secondary" id="viewVRM">VIEW VRM</button>
+                        <button class="action-btn export" id="exportJSON">📄 EXPORT JSON</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>LOADING AVATARS...</h2>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
