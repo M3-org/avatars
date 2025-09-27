@@ -27,18 +27,16 @@ The repository follows a consistent directory structure:
 ## Common Development Tasks
 
 ### Generate Metadata Files
-To regenerate the README.md table and CSV data after adding new avatars:
+To regenerate metadata files after adding new avatars:
 ```bash
-cd scripts/
-python generate_metadata.py
+python scripts/generate_all_metadata.py
 ```
 
-### Generate Avatar JSON Data
-To create/update the comprehensive data.json file:
-```bash
-cd scripts/
-python generate_avatar_json.py
-```
+Options:
+- `--json`: Generate data.json for programmatic access
+- `--csv`: Generate avatars.csv for spreadsheet use
+- `--readme`: Generate README.md with markdown tables
+- `--all`: Generate all files (default)
 
 ### Convert FBX to VRM (Blender Required)
 For converting FBX models to VRM format:

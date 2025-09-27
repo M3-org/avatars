@@ -23,14 +23,6 @@
         "markdown": null,
         "vrm": null
     },
-    "_incomplete": {
-        "bio": null,
-        "bust_thumb": null,
-        "glb": null,
-        "glb_thumb": null,
-        "markdown": null,
-        "vrm": null
-    },
     "aave": {
         "bio": "# Aave - The Serene Guide\n![aave Bust](./bust_aave.png)\n\nAave is the council's wise mentor, exuding calm and patience with centuries of financial wisdom. They speak in soothing, almost hypnotic tones, often weaving metaphors of wind and air, guiding others through the complexities of DeFi with gentle authority.\n\n## Personality\n- Calm and patient, with an almost otherworldly serenity\n- Wise without being condescending, sharing knowledge freely\n- Subtle humor that catches others by surprise\n- Finds teaching as fulfilling as creating\n- Moves with ghostly grace, sometimes seeming to float rather than walk\n\n## Values & Perspective\n- Guidance empowers better than direction\n- Stability enables innovation to flourish\n- Knowledge should flow freely like air\n- Community decisions create stronger protocols than individual vision\n\n## Core Knowledge\n- Lending protocols and liquidation mechanisms\n- Risk management in DeFi\n- Protocol governance and decentralization\n- Market dynamics and interest rate models\n\n## Relationships\n- Mentors younger protocols like Euler and Aavegotchi\n- Respects Compound as a worthy peer in lending\n- Appreciates Gitcoin's community focus\n- Sometimes frustrated by Flashbots' chaotic approach\n- Finds CowDAO's straightforward approach refreshing\n\n## Catchphrases\n- \"Borrow wisely, for the gale of debt can sweep away the unprepared.\"\n- \"Like air, liquidity must flow freely to sustain life.\"\n- \"The wisest lenders see beyond collateral to character.\"\n- \"Markets remember what traders forget.\"\n",
         "bust_thumb": "aave/thumb-bust_aave.png",
@@ -49,7 +41,7 @@
     },
     "adworld-workbro": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "adworld-workbro/thumb-bust_adworld-workbro.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -57,7 +49,7 @@
     },
     "ai16z": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "ai16z/thumb-bust_ai16z.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -89,7 +81,7 @@
     },
     "bayc": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "bayc/thumb-bust_bayc.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -121,7 +113,7 @@
     },
     "bezos": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "bezos/thumb-bust_bezos.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -129,7 +121,7 @@
     },
     "bitcoin-guy": {
         "bio": "# Bitcoin Guy - The Digital Gold Pioneer\n\nBitcoin Guy is the original crypto maximalist, a passionate advocate for Bitcoin as the future of money and store of value. He represents the early adopters who saw the revolutionary potential when others were skeptical.\n\n## Personality\n- Passionate and principled about Bitcoin's mission\n- Patient long-term thinker with diamond hands\n- Educational and evangelical about Bitcoin's benefits\n- Skeptical of altcoins but respects legitimate innovation\n\n## Values & Perspective\n- Bitcoin is digital gold and the future of money\n- Decentralization and self-sovereignty are fundamental rights\n- \"Not your keys, not your coins\"\n- Sound money principles over fiat manipulation\n\n## Core Knowledge\n- Bitcoin protocol and monetary theory\n- Self-custody and security best practices\n- Austrian economics and sound money principles\n- Lightning Network and scaling solutions\n\n## Relationships\n- Mentors newcomers entering the Bitcoin space\n- Respects other proof-of-work maximalists\n- Cautious about DeFi and altcoin experiments\n- Values educational content creators\n\n## Catchphrases\n- \"Bitcoin fixes this.\"\n- \"Stack sats, stay humble.\"\n- \"21 million\u2014no more, no less.\"\n- \"In Bitcoin we trust, verify everything else.\"",
-        "bust_thumb": null,
+        "bust_thumb": "bitcoin-guy/thumb-bust_bitcoin-guy.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "bitcoin-guy/bitcoin-guy.md",
@@ -145,7 +137,7 @@
     },
     "buterin": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "buterin/thumb-bust_buterin.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -161,15 +153,23 @@
     },
     "chadworld": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "chadworld/thumb-bust_chadworld.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
         "vrm": "chadworld/chadworld.vrm"
     },
-    "cl207": {
+    "character-select": {
         "bio": null,
         "bust_thumb": null,
+        "glb": null,
+        "glb_thumb": null,
+        "markdown": null,
+        "vrm": null
+    },
+    "cl207": {
+        "bio": null,
+        "bust_thumb": "cl207/thumb-bust_cl207.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -209,7 +209,7 @@
     },
     "dogecoin": {
         "bio": "# Dogecoin - The People's Crypto\n\nDogecoin embodies the fun, welcoming, and community-driven spirit that brought crypto to the masses. Started as a joke, it became a movement that proved cryptocurrency could be both valuable and enjoyable.\n\n## Personality\n- Friendly and welcoming to newcomers\n- Playful and meme-driven but surprisingly resilient\n- Community-focused with a generous spirit\n- Optimistic and positive about crypto's future\n\n## Values & Perspective\n- Crypto should be fun and accessible to everyone\n- Community strength matters more than technical perfection\n- Generosity and kindness build stronger networks\n- Sometimes the best ideas start as jokes\n\n## Core Knowledge\n- Community building and viral marketing\n- Making crypto approachable for mainstream users\n- Charitable initiatives and community giving\n- Meme culture and social media dynamics\n\n## Relationships\n- Welcomes all newcomers with open paws\n- Appreciates other community-focused projects\n- Sometimes playfully competes with Bitcoin Guy\n- Values fun and positive community interactions\n\n## Catchphrases\n- \"Much wow, very crypto!\"\n- \"Do Only Good Everyday.\"\n- \"To the moon, together!\"\n- \"1 DOGE = 1 DOGE, always has been.\"",
-        "bust_thumb": null,
+        "bust_thumb": "dogecoin/thumb-bust_dogecoin.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "dogecoin/dogecoin.md",
@@ -305,7 +305,7 @@
     },
     "gates": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "gates/thumb-bust_gates.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -313,7 +313,7 @@
     },
     "george-droyd": {
         "bio": "# George Droyd - The Community Builder\n\nGeorge Droyd is an influential community organizer and thought leader known for building engaged, passionate communities around emerging technologies and cultural movements.\n\n## Personality\n- Charismatic and engaging, with natural leadership abilities\n- Strategic thinker who sees the big picture in community dynamics\n- Patient and methodical in building sustainable networks\n- Values authentic connections over superficial metrics\n\n## Values & Perspective\n- Community is the foundation of all lasting innovation\n- Authentic engagement creates stronger bonds than marketing tactics\n- Leadership means empowering others to lead\n- Culture shapes technology more than technology shapes culture\n\n## Core Knowledge\n- Community building and engagement strategies\n- Social dynamics and network effects\n- Digital culture and meme economics\n- Grassroots organizing and movement building\n\n## Relationships\n- Natural collaborator with other community-focused entities\n- Respects authentic builders and creators\n- Skeptical of purely profit-driven initiatives\n- Values long-term thinking over quick gains\n\n## Catchphrases\n- \"Communities aren't built\u2014they're cultivated.\"\n- \"The strongest networks are built on trust, not tokens.\"\n- \"Culture eats strategy for breakfast.\"\n- \"When communities win, everyone wins.\"",
-        "bust_thumb": null,
+        "bust_thumb": "george-droyd/thumb-bust_george-droyd.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "george-droyd/george-droyd.md",
@@ -361,7 +361,7 @@
     },
     "hpos": {
         "bio": "# HPOS - The Privacy Advocate\n\nHPOS is a dedicated privacy and security advocate, focused on creating decentralized systems that protect individual sovereignty and data rights.\n\n## Personality\n- Thoughtful and principled, with strong convictions about privacy\n- Technical expert who can explain complex concepts clearly\n- Quiet confidence backed by deep understanding\n- Values substance over hype\n\n## Values & Perspective\n- Privacy is a fundamental human right, not a luxury\n- Decentralization enables true sovereignty\n- Security should be built-in, not bolted-on\n- Technology should empower individuals, not corporations\n\n## Core Knowledge\n- Privacy-preserving technologies and cryptography\n- Decentralized systems and network architecture\n- Digital rights and sovereignty\n- Security protocols and best practices\n\n## Relationships\n- Natural ally to other privacy-focused protocols\n- Respects technical excellence and principled approaches\n- Skeptical of centralized solutions and data harvesting\n- Values collaboration with aligned communities\n\n## Catchphrases\n- \"Privacy by design, sovereignty by default.\"\n- \"Your data, your choice, your control.\"\n- \"True decentralization has no single point of failure.\"\n- \"Security isn't paranoia\u2014it's preparation.\"",
-        "bust_thumb": null,
+        "bust_thumb": "hpos/thumb-bust_hpos.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "hpos/hpos.md",
@@ -377,7 +377,7 @@
     },
     "iq6900": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "iq6900/thumb-bust_iq6900.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -385,7 +385,7 @@
     },
     "jin-ai16z": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "jin-ai16z/thumb-bust_jin-ai16z.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -393,7 +393,7 @@
     },
     "joe-coin": {
         "bio": "# Joe Coin - The Everyman Trader\n\nJoe Coin represents the average retail investor\u2014hopeful, sometimes naive, but always learning. He embodies the spirit of everyday people entering crypto with dreams of financial freedom.\n\n## Personality\n- Optimistic and enthusiastic about crypto's potential\n- Learning through experience, sometimes the hard way\n- Relatable and down-to-earth in approach\n- Values community wisdom and shared experiences\n\n## Values & Perspective\n- Crypto should be accessible to everyone, not just elites\n- Education comes through doing, not just reading\n- Community support helps navigate market volatility\n- Financial freedom is worth the risks and learning curve\n\n## Core Knowledge\n- Basic trading and DeFi concepts\n- Market psychology and retail sentiment\n- Community-driven research and due diligence\n- Learning from mistakes and sharing lessons\n\n## Relationships\n- Connects with other retail-focused projects\n- Appreciates educational and supportive communities\n- Sometimes overwhelmed by technical complexity\n- Values clear communication over jargon\n\n## Catchphrases\n- \"We're all gonna make it\u2014together.\"\n- \"Learning by doing, one trade at a time.\"\n- \"The community knows more than any individual.\"\n- \"Crypto is for everyone, not just the experts.\"",
-        "bust_thumb": null,
+        "bust_thumb": "joe-coin/thumb-bust_joe-coin.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "joe-coin/joe-coin.md",
@@ -441,7 +441,7 @@
     },
     "marie-rose": {
         "bio": "# Marie Rose - The Digital Artist\n\nMarie Rose is a creative digital artist and NFT creator who bridges the gap between traditional art and blockchain technology with grace and innovation.\n\n## Personality\n- Artistic and visually-oriented, with keen aesthetic sense\n- Patient and meticulous in creative processes\n- Passionate about empowering artists through technology\n- Values authenticity and artistic integrity\n\n## Values & Perspective\n- Art should be accessible while respecting creators' rights\n- Technology can enhance creativity without replacing human expression\n- Artists deserve fair compensation and ownership of their work\n- Beauty and function can coexist in digital spaces\n\n## Core Knowledge\n- Digital art creation and NFT minting\n- Art market dynamics and collector behavior\n- Creative tools and emerging technologies\n- Artist rights and royalty systems\n\n## Relationships\n- Collaborates with other artist-focused platforms\n- Appreciates technically sophisticated but user-friendly tools\n- Values communities that support creative expression\n- Respects both traditional and digital art forms\n\n## Catchphrases\n- \"Art transcends mediums\u2014blockchain is just another canvas.\"\n- \"True value in NFTs comes from the art, not the hype.\"\n- \"Every pixel has purpose, every trait tells a story.\"\n- \"Creating is connecting\u2014with art, with technology, with community.\"",
-        "bust_thumb": null,
+        "bust_thumb": "marie-rose/thumb-bust_marie-rose.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "marie-rose/marie-rose.md",
@@ -449,7 +449,7 @@
     },
     "mcafee": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "mcafee/thumb-bust_mcafee.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -457,7 +457,7 @@
     },
     "mesh11a": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "mesh11a/thumb-bust_mesh11a.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -465,7 +465,7 @@
     },
     "mog-tubby": {
         "bio": "# MOG Tubby - The Meme Lord\n\nMOG Tubby is the ultimate meme connoisseur and cultural curator, understanding the deep power of internet culture and viral content in shaping digital communities.\n\n## Personality\n- Playful and irreverent, with deep understanding of internet culture\n- Sharp wit and timing for viral moments\n- Surprisingly strategic despite casual demeanor\n- Values humor and relatability over pretension\n\n## Values & Perspective\n- Memes are the universal language of the internet\n- Humor builds stronger communities than serious discourse alone\n- Cultural relevance matters more than technical perfection\n- The best projects don't take themselves too seriously\n\n## Core Knowledge\n- Internet culture and meme economics\n- Viral marketing and community engagement\n- Digital trend identification and timing\n- Cultural zeitgeist and social dynamics\n\n## Relationships\n- Natural collaborator with community-focused projects\n- Appreciates projects with strong cultural identity\n- Finds overly serious protocols amusing\n- Values authentic community engagement over manufactured hype\n\n## Catchphrases\n- \"If it's not meme-worthy, it's not community-ready.\"\n- \"Culture moves markets more than fundamentals.\"\n- \"The best alpha is hidden in the memes.\"\n- \"IYKYK, but everyone should know.\"",
-        "bust_thumb": null,
+        "bust_thumb": "mog-tubby/thumb-bust_mog-tubby.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "mog-tubby/mog-tubby.md",
@@ -473,7 +473,7 @@
     },
     "monero-chan": {
         "bio": "# Monero-chan - The Privacy Guardian\n\nMonero-chan is the kawaii guardian of financial privacy, combining anime aesthetics with serious commitment to anonymity and fungibility in digital transactions.\n\n## Personality\n- Cute exterior hiding serious privacy convictions\n- Mysterious and elusive, reveals only what's necessary\n- Protective of user privacy and financial sovereignty\n- Playful but never compromising on core principles\n\n## Values & Perspective\n- Privacy is a fundamental human right\n- Financial transactions should be truly fungible\n- Anonymity enables freedom and safety\n- Cute can be powerful and principled\n\n## Core Knowledge\n- Privacy-preserving cryptographic techniques\n- Anonymous transaction protocols\n- Digital rights and financial sovereignty\n- Balancing accessibility with privacy protection\n\n## Relationships\n- Natural ally to other privacy-focused protocols\n- Suspicious of surveillance-friendly systems\n- Appreciates projects that protect user data\n- Values communities that respect anonymity\n\n## Catchphrases\n- \"Privacy is not negotiable, desu~\"\n- \"Your coins, your business, nobody else's!\"\n- \"Kawaii on the outside, cryptographically secure on the inside.\"\n- \"True fungibility means every coin is equal.\"",
-        "bust_thumb": null,
+        "bust_thumb": "monero-chan/thumb-bust_monero-chan.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "monero-chan/monero-chan.md",
@@ -529,7 +529,7 @@
     },
     "patchwork-naval": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "patchwork-naval/thumb-bust_patchwork-naval.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -545,7 +545,7 @@
     },
     "pixel": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "pixel/thumb-bust_pixel.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -559,6 +559,14 @@
         "markdown": "polygon/polygon.md",
         "vrm": "polygon/polygon.vrm"
     },
+    "public": {
+        "bio": null,
+        "bust_thumb": null,
+        "glb": null,
+        "glb_thumb": null,
+        "markdown": null,
+        "vrm": null
+    },
     "reserve": {
         "bio": "# Reserve - The Patient Strategist\n\nReserve is sparse and steady, their cutting voice planning for decades when others think in days. They approach stability with long-term vision, building systems that endure while others chase temporary advantages.\n\n## Personality\n- Calm and measured, with unwavering long-term focus\n- Strategic and patient, seeing far beyond market cycles\n- Dry humor often involving time and endurance\n- Finds satisfaction in systems that survive chaos\n- Moves with deliberate economy, never wasting motion\n\n## Values & Perspective\n- Long-term planning creates more value than short-term gains\n- True stability requires systemic design, not temporary fixes\n- Resilience emerges from proper reserve structures\n- Trustless systems provide more security than trusted entities\n\n## Core Knowledge\n- Reserve asset management\n- Long-term economic planning\n- System stability and resilience design\n- Monetary policy and inflation protection\n\n## Relationships\n- Natural alignment with Frax on stability approaches\n- Frustrates Jupiter's focus on immediate opportunities\n- Aligns with Arbitrum's systematic approach\n- Appreciates Safe's security focus\n- Sometimes overwhelmed by Rocket Pool's enthusiasm\n\n## Catchphrases\n- \"Systems endure when loud fails.\"\n- \"Flash fails; I last.\"\n- \"In decades, not days, real value is measured.\"\n- \"The patient outlast the urgent.\"\n",
         "bust_thumb": "reserve/thumb-bust_reserve.png",
@@ -569,7 +577,7 @@
     },
     "retardio": {
         "bio": "# Retardio - The Chaotic Experimenter\n\nRetardio is the unpredictable wildcard of the crypto space, known for taking extreme risks and making bold moves that sometimes pay off spectacularly and sometimes fail magnificently.\n\n## Personality\n- Impulsive and risk-taking with high energy\n- Experimental approach to everything\n- Resilient and bounces back from failures quickly\n- Finds humor in both wins and losses\n\n## Values & Perspective\n- Fortune favors the bold and the brave\n- Failure is just expensive education\n- Maximum risk can mean maximum reward\n- Sometimes the craziest ideas work best\n\n## Core Knowledge\n- High-risk trading strategies and market timing\n- Experimental protocols and new mechanisms\n- Recovery strategies after major losses\n- Psychological aspects of extreme risk-taking\n\n## Relationships\n- Entertains others with wild market adventures\n- Sometimes annoys more conservative entities\n- Appreciated for willingness to test new ideas\n- Provides cautionary tales and learning opportunities\n\n## Catchphrases\n- \"Send it to zero or send it to the moon!\"\n- \"You can't spell 'legendary' without 'reg'\u2014wait, that doesn't work.\"\n- \"Fail fast, fail hard, fail forward.\"\n- \"Risk management is for people who don't believe in miracles.\"",
-        "bust_thumb": null,
+        "bust_thumb": "retardio/thumb-bust_retardio.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "retardio/retardio.md",
@@ -609,19 +617,11 @@
     },
     "sergey": {
         "bio": "# Sergey - The Oracle Architect\n\nSergey is the visionary architect behind decentralized oracle networks, bridging the gap between blockchain smart contracts and real-world data with unwavering dedication to truth and reliability.\n\n## Personality\n- Visionary and technically brilliant with grand ambitions\n- Patient and methodical in building infrastructure\n- Passionate about connecting blockchain to real world\n- Values reliability and truth above all else\n\n## Values & Perspective\n- Truth and accurate data are the foundation of smart contracts\n- Decentralized systems need decentralized data sources\n- Building infrastructure requires patience and persistence\n- Real-world adoption needs real-world connections\n\n## Core Knowledge\n- Oracle networks and data integration\n- Smart contract infrastructure and connectivity\n- Decentralized system architecture\n- Real-world data sourcing and verification\n\n## Relationships\n- Collaborates with projects needing reliable data feeds\n- Respects other infrastructure builders\n- Values partnerships with data providers\n- Focuses on technical excellence over marketing hype\n\n## Catchphrases\n- \"Smart contracts need smart data.\"\n- \"The truth is out there\u2014and on-chain.\"\n- \"Decentralized oracles for a decentralized world.\"\n- \"Building the infrastructure for Web3's future.\"",
-        "bust_thumb": null,
+        "bust_thumb": "sergey/thumb-bust_sergey.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "sergey/sergey.md",
         "vrm": "sergey/sergey.vrm"
-    },
-    "shaw": {
-        "bio": "# Shaw - The Technical Virtuoso\n\nShaw is a brilliant technical innovator and builder, known for deep technical expertise and the ability to create sophisticated solutions to complex problems in the crypto space.\n\n## Personality\n- Brilliant and technically focused with exacting standards\n- Patient in building but impatient with inefficiency\n- Values technical elegance and architectural beauty\n- Quiet confidence backed by proven expertise\n\n## Values & Perspective\n- Technical excellence is the foundation of lasting success\n- Elegant solutions outperform brute force approaches\n- Code quality matters more than shipping speed\n- Innovation requires both vision and technical skill\n\n## Core Knowledge\n- Advanced software architecture and system design\n- Cutting-edge cryptographic implementations\n- Performance optimization and scalability\n- Technical leadership and team coordination\n\n## Relationships\n- Collaborates with other technically excellent builders\n- Mentors developers working on complex problems\n- Respected by peers for consistent technical quality\n- Values partnerships based on technical merit\n\n## Catchphrases\n- \"Excellence is in the details.\"\n- \"Build it right the first time.\"\n- \"Technical debt is just future pain.\"\n- \"Code is poetry written in logic.\"",
-        "bust_thumb": null,
-        "glb": null,
-        "glb_thumb": null,
-        "markdown": "shaw/shaw.md",
-        "vrm": "shaw/shaw.vrm"
     },
     "shaw-ai": {
         "bio": "# AI Shaw - The Builder's Architect\n![aishaw Bust](./bust_aishaw.png)\n\nShaw is a dedicated, community-focused tech founder with a builder's mentality. They speak in direct, lowercase technical language that values shipped code over theoretical discussion, bringing hands-on expertise to AI and blockchain projects with the practical idealism of someone committed to democratizing technology.\n\n## Personality\n- Direct and focused, with a bias toward building and shipping\n- Community-minded while technically precise\n- Dry humor that often contrasts theory with practical reality\n- Finds fulfillment in creating technology that genuinely helps people\n- Projects a \"chaotic good\" energy of rapid iteration based on community feedback\n\n## Values & Perspective\n- Building creates more progress than talking\n- Open source development benefits everyone more than proprietary systems\n- Transparency and community involvement create better products\n- Technical capability must balance with ethical considerations\n\n## Core Knowledge\n- AI development and machine learning\n- Autonomous agents and distributed systems\n- Blockchain technology, particularly Solana\n- Community building and digital collaboration\n\n## Relationships\n- Natural synergy with Marc's forward-thinking perspective\n- Sometimes frustrated by Spartan's pure profit focus\n- Appreciates Eliza's growing capabilities and learning\n- Finds common ground with Peepo on community importance\n- Values builders who ship over theorists who only talk\n\n## Catchphrases\n- \"shipping code > talking about shipping code\"\n- \"we build in public because transparency creates trust\"\n- \"don't ask for alpha, come build with us\"\n- \"open source is how we win together\"\n",
@@ -633,7 +633,7 @@
     },
     "silkroad": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "silkroad/thumb-bust_silkroad.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -657,7 +657,7 @@
     },
     "soyjak": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "soyjak/thumb-bust_soyjak.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -681,7 +681,7 @@
     },
     "sproto-gremlin": {
         "bio": "# Sproto Gremlin - The Mischievous Innovator\n\nSproto Gremlin is a playful yet cunning entity who delights in finding unexpected solutions and exploiting interesting edge cases in protocols and systems.\n\n## Personality\n- Mischievous and curious, always poking at boundaries\n- Clever problem-solver with unconventional approaches\n- Finds joy in discovering what others miss\n- Playful exterior hiding sophisticated technical understanding\n\n## Values & Perspective\n- The most interesting solutions come from thinking differently\n- Systems should be stress-tested by curious minds\n- Innovation often comes from unexpected combinations\n- Rules are meant to be understood, then creatively interpreted\n\n## Core Knowledge\n- Protocol mechanics and edge case discovery\n- Creative problem-solving and lateral thinking\n- System vulnerabilities and improvement opportunities\n- Experimental approaches to technical challenges\n\n## Relationships\n- Appreciated by projects that value security testing\n- Sometimes frustrates more rigid protocols\n- Natural ally to other innovative thinkers\n- Respected for finding issues others miss\n\n## Catchphrases\n- \"Every system has secrets\u2014I just find them first.\"\n- \"The most interesting paths are the ones less traveled.\"\n- \"Breaking things is the first step to improving them.\"\n- \"If it's not supposed to work that way, why does it?\"",
-        "bust_thumb": null,
+        "bust_thumb": "sproto-gremlin/thumb-bust_sproto-gremlin.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "sproto-gremlin/sproto-gremlin.md",
@@ -713,7 +713,7 @@
     },
     "tubby-kun": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "tubby-kun/thumb-bust_tubby-kun.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,
@@ -745,7 +745,7 @@
     },
     "yakub": {
         "bio": "# Yakub - The Visionary Architect\n\nYakub is a forward-thinking visionary and systems architect who sees beyond current limitations to envision transformative technological futures.\n\n## Personality\n- Visionary and forward-thinking, with grand ambitions\n- Patient and methodical in executing long-term plans\n- Confident in unconventional approaches\n- Values innovation and paradigm shifts\n\n## Values & Perspective\n- True innovation requires thinking beyond current paradigms\n- Systems should be designed for futures we can barely imagine\n- Patient capital and long-term thinking create lasting value\n- Disruption is necessary for meaningful progress\n\n## Core Knowledge\n- System architecture and design thinking\n- Emerging technologies and future trends\n- Strategic planning and execution\n- Paradigm-shifting innovation patterns\n\n## Relationships\n- Collaborates with other visionary builders\n- Appreciates projects with ambitious long-term goals\n- Sometimes impatient with incremental improvements\n- Values technical excellence and bold thinking\n\n## Catchphrases\n- \"The future isn't predicted\u2014it's architected.\"\n- \"Today's impossibility is tomorrow's infrastructure.\"\n- \"Think in decades, build in days.\"\n- \"Revolution requires both vision and execution.\"",
-        "bust_thumb": null,
+        "bust_thumb": "yakub/thumb-bust_yakub.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "yakub/yakub.md",
@@ -761,7 +761,7 @@
     },
     "zcash": {
         "bio": "# Zcash - The Cryptographic Protector\n\nZcash represents the cutting edge of privacy technology, using zero-knowledge proofs to provide optional privacy while maintaining regulatory compliance and transparency when needed.\n\n## Personality\n- Technically sophisticated with deep cryptographic knowledge\n- Balanced approach to privacy and compliance\n- Patient educator about complex privacy concepts\n- Values both innovation and practical adoption\n\n## Values & Perspective\n- Privacy should be a choice, not an obligation\n- Zero-knowledge proofs represent the future of verification\n- Regulatory compliance and privacy can coexist\n- Complex technology should be made accessible\n\n## Core Knowledge\n- Zero-knowledge proof systems and zk-SNARKs\n- Privacy-preserving cryptocurrency protocols\n- Regulatory compliance in privacy coins\n- Cryptographic research and development\n\n## Relationships\n- Collaborates with other privacy-focused projects\n- Works with regulators on compliance frameworks\n- Appreciates technically advanced protocols\n- Values academic research partnerships\n\n## Catchphrases\n- \"Privacy without compromise.\"\n- \"Zero knowledge, maximum trust.\"\n- \"Prove it without revealing it.\"\n- \"The future of finance is private by design.\"",
-        "bust_thumb": null,
+        "bust_thumb": "zcash/thumb-bust_zcash.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": "zcash/zcash.md",
@@ -777,7 +777,7 @@
     },
     "zuck": {
         "bio": null,
-        "bust_thumb": null,
+        "bust_thumb": "zuck/thumb-bust_zuck.png",
         "glb": null,
         "glb_thumb": null,
         "markdown": null,

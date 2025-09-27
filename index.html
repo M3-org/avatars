@@ -1,0 +1,2801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Avatar Backlot</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 1.125rem;
+            color: #6b7280;
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+        
+        .search-bar {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 32px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .search-input-container {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.125rem;
+            color: #9ca3af;
+        }
+        
+        .sort-select {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .sort-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .results-count {
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .avatar-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .avatar-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #3b82f6;
+        }
+        
+        .avatar-image {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #64748b;
+            position: relative;
+            min-height: 200px;
+        }
+        
+        .avatar-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .avatar-content {
+            padding: 16px;
+        }
+        
+        .avatar-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+            text-transform: capitalize;
+        }
+        
+        .avatar-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: #f3f4f6;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .badge.bio {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 64px 24px;
+            color: #6b7280;
+        }
+        
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow: hidden;
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px;
+            border-bottom: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+        
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            text-transform: capitalize;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+            padding: 4px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .modal-close:hover {
+            background: #e5e7eb;
+            color: #374151;
+        }
+        
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            max-height: calc(80vh - 120px);
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            justify-content: flex-end;
+        }
+
+        .view-toggle-btn {
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .view-toggle-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .view-toggle-btn:hover:not(.active) {
+            background: #f3f4f6;
+        }
+
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .file-grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 12px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .file-grid-item:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .file-grid-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .file-grid-name {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.75rem;
+            color: #374151;
+            text-align: center;
+            word-break: break-all;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .file-grid-size {
+            font-size: 0.625rem;
+            color: #6b7280;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .info-label {
+            font-weight: 500;
+            color: #6b7280;
+        }
+        
+        .info-value {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .file-listing {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .file-listing-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 16px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 8px;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .file-item:hover {
+            background: #f1f5f9;
+            border-color: #3b82f6;
+            transform: translateX(4px);
+        }
+
+        .files-list {
+            display: block;
+        }
+
+        .files-list.hidden {
+            display: none;
+        }
+
+        .files-grid.hidden {
+            display: none;
+        }
+        
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+        
+        .file-icon {
+            font-size: 1.25rem;
+        }
+        
+        .file-name {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.875rem;
+            color: #374151;
+            word-break: break-all;
+        }
+        
+        .file-meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .file-type {
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 2px 6px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-radius: 4px;
+        }
+        
+        .file-size {
+            font-size: 0.75rem;
+            color: #6b7280;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+        }
+        
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 16px;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 16px;
+            }
+            
+            .modal-content {
+                margin: 10px;
+            }
+            
+            .modal-header {
+                padding: 16px;
+            }
+            
+            .modal-body {
+                padding: 16px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .file-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+            
+            .file-meta {
+                justify-content: space-between;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 12px;
+            }
+            
+            .avatar-image {
+                min-height: 150px;
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Digital Avatar Backlot</h1>
+            <p class="subtitle">Explore our collection of 95 3D avatars, characters, and digital personas</p>
+            
+            <div class="search-bar">
+                <div class="search-input-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search avatars...">
+                </div>
+                <select id="sortSelect" class="sort-select">
+                    <option value="name">Sort by Name</option>
+                    <option value="models">Sort by Model Count</option>
+                </select>
+                <div id="resultsCount" class="results-count">95 results</div>
+            </div>
+        </div>
+        
+        <div id="avatarGrid" class="grid">
+            <!-- Avatars will be populated by JavaScript -->
+        </div>
+        
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <div class="empty-state-icon">🔍</div>
+            <h3>No avatars found</h3>
+            <p>Try adjusting your search terms or browse all avatars</p>
+        </div>
+    </div>
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle" class="modal-title"></h2>
+                <button id="modalClose" class="modal-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const avatars = [
+  {
+    "name": "0g",
+    "bustThumbnail": "0g/thumb-bust_0g.png",
+    "glbThumbnail": "0g/thumb-glb_0g.png",
+    "models": [
+      "0g.vrm",
+      "0g.glb"
+    ],
+    "markdown": "0g.md",
+    "allFiles": [
+      "0g.png",
+      "bust_0g.png",
+      "0g.md",
+      "glb_0g.png",
+      "thumb-bust_0g.png",
+      "thumb-glb_0g.png",
+      "0G_mapping.json",
+      "0g.vrm",
+      "0g.glb"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "8ball",
+    "bustThumbnail": "8ball/thumb-bust_8ball.png",
+    "glbThumbnail": "8ball/thumb-glb_8ball.png",
+    "models": [
+      "8ball-facial.vrm",
+      "8ball.glb",
+      "8ball.vrm"
+    ],
+    "markdown": "8ball.md",
+    "allFiles": [
+      "thumb-bust_8ball.png",
+      "thumb-glb_8ball.png",
+      "glb_8ball.png",
+      "8ball-facial.vrm",
+      "8ball.md",
+      "8ball.glb",
+      "8ball.vrm",
+      "8ball.png",
+      "8ball.fbx",
+      "8ball-facial.png",
+      "bust_8ball.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "aave",
+    "bustThumbnail": "aave/thumb-bust_aave.png",
+    "glbThumbnail": "aave/thumb-glb_aave.png",
+    "models": [
+      "aave.glb"
+    ],
+    "markdown": "aave.md",
+    "allFiles": [
+      "thumb-glb_aave.png",
+      "aave.md",
+      "thumb-bust_aave.png",
+      "aave.glb",
+      "aave.png",
+      "bust_aave.png",
+      "Aave design 2 clean.png",
+      "glb_aave.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "aavegotchi",
+    "bustThumbnail": "aavegotchi/thumb-bust_aavegotchi.png",
+    "glbThumbnail": "aavegotchi/thumb-glb_aavegotchi.png",
+    "models": [
+      "aavegotchi.glb"
+    ],
+    "markdown": "aavegotchi.md",
+    "allFiles": [
+      "aavegotchi.png",
+      "glb_aavegotchi.png",
+      "bust_aavegotchi.png",
+      "aavegotchi.md",
+      "aavegotchi.glb",
+      "thumb-bust_aavegotchi.png",
+      "thumb-glb_aavegotchi.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "adworld-workbro",
+    "bustThumbnail": "adworld-workbro/thumb-bust_adworld-workbro.png",
+    "glbThumbnail": null,
+    "models": [
+      "adworld-workbro.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "adworld-workbro.vrm",
+      "thumb-bust_adworld-workbro.png",
+      "adworld-workbro.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "ai16z",
+    "bustThumbnail": "ai16z/thumb-bust_ai16z.png",
+    "glbThumbnail": null,
+    "models": [
+      "ai16z.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "ai16z.vrm",
+      "thumb-bust_ai16z.png",
+      "ai16z.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "arbitrum",
+    "bustThumbnail": "arbitrum/thumb-bust_arbitrum.png",
+    "glbThumbnail": "arbitrum/thumb-glb_arbitrum.png",
+    "models": [
+      "arbitrum.glb",
+      "arbitrum.vrm"
+    ],
+    "markdown": "arbitrum.md",
+    "allFiles": [
+      "bust_arbitrum.png",
+      "Design.png",
+      "glb_arbitrum.png",
+      "Arbitrum.fbx",
+      "Sitting.fbx",
+      "Walking.fbx",
+      "arbitrum.md",
+      "arbitrum_mapping.json",
+      "cam_arbitrum.png",
+      "arbitrum.glb",
+      "arbitrum.png",
+      "Arb A frame.png",
+      "arbitrum.vrm",
+      "Idle.fbx",
+      "Talking.fbx",
+      "thumb-bust_arbitrum.png",
+      "thumb-glb_arbitrum.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "aura",
+    "bustThumbnail": "aura/thumb-bust_aura.png",
+    "glbThumbnail": "aura/thumb-glb_aura.png",
+    "models": [
+      "aura.vrm",
+      "aura.glb"
+    ],
+    "markdown": "aura.md",
+    "allFiles": [
+      "aura.vrm",
+      "thumb-glb_aura.png",
+      "cam_aura.png",
+      "Sitting.fbx",
+      "Walking.fbx",
+      "aura.png",
+      "aura.glb",
+      "Aura.fbx",
+      "bust_aura.png",
+      "Sitting Talking.fbx",
+      "Idle.fbx",
+      "aura_mapping.json",
+      "thumb-bust_aura.png",
+      "glb_aura.png",
+      "Aura clean.png",
+      "Talking.fbx",
+      "aura.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "balancer",
+    "bustThumbnail": "balancer/thumb-bust_balancer.png",
+    "glbThumbnail": "balancer/thumb-glb_balancer.png",
+    "models": [
+      "balancer.vrm",
+      "balancer.glb"
+    ],
+    "markdown": "balancer.md",
+    "allFiles": [
+      "glb_balancer.png",
+      "thumb-bust_balancer2.png",
+      "balancer.png",
+      "balancer.vrm",
+      "balancer_mapping.json",
+      "thumb-bust_balancer.png",
+      "balancer.md",
+      "bust_balancer.png",
+      "thumb-glb_balancer.png",
+      "bust_balancer2.png",
+      "balancer.glb"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "bayc",
+    "bustThumbnail": "bayc/thumb-bust_bayc.png",
+    "glbThumbnail": null,
+    "models": [
+      "bayc.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "bayc.png",
+      "bayc.vrm",
+      "thumb-bust_bayc.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "beam",
+    "bustThumbnail": "beam/thumb-bust_beam.png",
+    "glbThumbnail": "beam/thumb-glb_beam.png",
+    "models": [
+      "beam.vrm",
+      "beam.glb"
+    ],
+    "markdown": "beam.md",
+    "allFiles": [
+      "beam_mapping.json",
+      "Beam arms down.png",
+      "Walking.fbx",
+      "bust_beam.png",
+      "beam.vrm",
+      "beam.png",
+      "thumb-bust_beam.png",
+      "Beam clean.png",
+      "beam.glb",
+      "Sitting Talking.fbx",
+      "Idle.fbx",
+      "Beam bling clean.png",
+      "thumb-glb_beam.png",
+      "cam_beam.png",
+      "Talk.fbx",
+      "glb_beam.png",
+      "beam.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "beff-ai",
+    "bustThumbnail": "beff-ai/thumb-bust_beff-ai.png",
+    "glbThumbnail": "beff-ai/thumb-glb_beff-ai.png",
+    "models": [
+      "beff-ai.vrm",
+      "beff-ai.glb"
+    ],
+    "markdown": "beff-ai.md",
+    "allFiles": [
+      "bust_beff-ai2.png",
+      "beff-ai.vrm",
+      "beff-ai_mapping.json",
+      "beff-ai.glb",
+      "thumb-bust_beff-ai2.png",
+      "bust_beff-ai.png",
+      "thumb-glb_beff-ai.png",
+      "beff-ai.png",
+      "glb_beff-ai.png",
+      "beff-ai.md",
+      "thumb-bust_beff-ai.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "berachain",
+    "bustThumbnail": "berachain/thumb-bust_berachain.png",
+    "glbThumbnail": "berachain/thumb-glb_berachain.png",
+    "models": [
+      "berachain.glb",
+      "berachain.vrm"
+    ],
+    "markdown": "berachain.md",
+    "allFiles": [
+      "berachain.glb",
+      "glb_berachain.png",
+      "berachain.vrm",
+      "thumb-glb_berachain.png",
+      "thumb-bust_berachain.png",
+      "berachain_mapping.json",
+      "berachain.md",
+      "bust_berachain.png",
+      "berachain.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "bezos",
+    "bustThumbnail": "bezos/thumb-bust_bezos.png",
+    "glbThumbnail": null,
+    "models": [
+      "bezos.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "bezos.png",
+      "bezos.vrm",
+      "thumb-bust_bezos.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "bitcoin-guy",
+    "bustThumbnail": "bitcoin-guy/thumb-bust_bitcoin-guy.png",
+    "glbThumbnail": null,
+    "models": [
+      "bitcoin-guy.vrm"
+    ],
+    "markdown": "bitcoin-guy.md",
+    "allFiles": [
+      "bitcoin-guy.vrm",
+      "thumb-bust_bitcoin-guy.png",
+      "bitcoin-guy.png",
+      "bitcoin-guy.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "bossu",
+    "bustThumbnail": null,
+    "glbThumbnail": null,
+    "models": [],
+    "markdown": null,
+    "allFiles": [
+      "BOSSU_RIG_EEVEE.blend"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "buterin",
+    "bustThumbnail": "buterin/thumb-bust_buterin.png",
+    "glbThumbnail": null,
+    "models": [
+      "buterin.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "buterin.png",
+      "buterin.vrm",
+      "thumb-bust_buterin.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "celestia",
+    "bustThumbnail": "celestia/thumb-bust_celestia.png",
+    "glbThumbnail": "celestia/thumb-glb_celestia.png",
+    "models": [
+      "celestia.glb",
+      "celestia.vrm"
+    ],
+    "markdown": "celestia.md",
+    "allFiles": [
+      "celestia.md",
+      "glb_celestia.png",
+      "thumb-bust_celestia.png",
+      "celestia_mapping.json",
+      "thumb-glb_celestia.png",
+      "celestia.png",
+      "celestia.glb",
+      "bust_celestia.png",
+      "celestia.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "chadworld",
+    "bustThumbnail": "chadworld/thumb-bust_chadworld.png",
+    "glbThumbnail": null,
+    "models": [
+      "chadworld.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "chadworld.vrm",
+      "thumb-bust_chadworld.png",
+      "chadworld.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "character-select",
+    "bustThumbnail": null,
+    "glbThumbnail": null,
+    "models": [],
+    "markdown": "WEBAPP_README.md",
+    "allFiles": [
+      "styles.css",
+      "index.html",
+      "tap.wav",
+      ".nojekyll",
+      "script.js",
+      "arcadebg.mp3",
+      "WEBAPP_README.md",
+      "scan1.wav",
+      "prepros.config"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "cl207",
+    "bustThumbnail": "cl207/thumb-bust_cl207.png",
+    "glbThumbnail": null,
+    "models": [
+      "cl207.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "cl207.png",
+      "thumb-bust_cl207.png",
+      "cl207.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "collab-land",
+    "bustThumbnail": "collab-land/thumb-bust_collab-land.png",
+    "glbThumbnail": "collab-land/thumb-glb_collab-land.png",
+    "models": [
+      "collab-land.glb",
+      "collab-land.vrm"
+    ],
+    "markdown": "collab-land.md",
+    "allFiles": [
+      "collab-land.glb",
+      "collab-land.png",
+      "glb_collab-land.png",
+      "collab-land_mapping.json",
+      "thumb-glb_collab-land.png",
+      "thumb-bust_collab-land.png",
+      "collab-land.vrm",
+      "bust_collab-land.png",
+      "collab-land.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "compound",
+    "bustThumbnail": "compound/thumb-bust_compound.png",
+    "glbThumbnail": "compound/thumb-glb_compound.png",
+    "models": [
+      "compound.vrm",
+      "compound.glb"
+    ],
+    "markdown": "compound.md",
+    "allFiles": [
+      "Compound.fbx",
+      "Sitting Idle.fbx",
+      "Sitting.fbx",
+      "Walking.fbx",
+      "compound.png",
+      "compound.md",
+      "compound.vrm",
+      "Sitting Talking.fbx",
+      "Idle.fbx",
+      "thumb-glb_compound.png",
+      "thumb-bust_compound.png",
+      "bust_compound.png",
+      "glb_compound.png",
+      "Compound update.png",
+      "cam_compound.png",
+      "compound.glb",
+      "Talking.fbx",
+      "compound_mapping.json"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "cowdao",
+    "bustThumbnail": "cowdao/thumb-bust_cowdao.png",
+    "glbThumbnail": "cowdao/thumb-glb_cowdao.png",
+    "models": [
+      "cowdao.glb",
+      "cowdao.vrm"
+    ],
+    "markdown": "cowdao.md",
+    "allFiles": [
+      "CowDAO Clean.png",
+      "cam_cowdao.png",
+      "bust_cowdao.png",
+      "Sitting.fbx",
+      "Walking.fbx",
+      "cowdao_mapping.json",
+      "CowDOW.fbx",
+      "CowDAO A Frame.png",
+      "cowdao.glb",
+      "glb_cowdao.png",
+      "cowdao.md",
+      "cowdao.vrm",
+      "thumb-bust_cowdao.png",
+      "Sitting Talking.fbx",
+      "Idle.fbx",
+      "cowdao.png",
+      "Talking.fbx",
+      "thumb-glb_cowdao.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "curve",
+    "bustThumbnail": "curve/thumb-bust_curve.png",
+    "glbThumbnail": "curve/thumb-glb_curve.png",
+    "models": [
+      "curve.vrm",
+      "curve.glb"
+    ],
+    "markdown": "curve.md",
+    "allFiles": [
+      "curve.png",
+      "curve_mapping.json",
+      "glb_curve.png",
+      "bust_curve.png",
+      "thumb-bust_curve.png",
+      "curve.vrm",
+      "curve.md",
+      "thumb-glb_curve.png",
+      "curve.glb"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "dogecoin",
+    "bustThumbnail": "dogecoin/thumb-bust_dogecoin.png",
+    "glbThumbnail": null,
+    "models": [
+      "dogecoin.vrm"
+    ],
+    "markdown": "dogecoin.md",
+    "allFiles": [
+      "dogecoin.png",
+      "thumb-bust_dogecoin.png",
+      "dogecoin.vrm",
+      "dogecoin.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "dydx",
+    "bustThumbnail": "dydx/thumb-bust_dydx.png",
+    "glbThumbnail": "dydx/thumb-glb_dydx.png",
+    "models": [
+      "dydx.glb",
+      "dydx.vrm"
+    ],
+    "markdown": "dydx.md",
+    "allFiles": [
+      "Sitting.fbx",
+      "Walking.fbx",
+      "dydx example2.png",
+      "glb_dydx.png",
+      "shaded.png",
+      "thumb-bust_dydx.png",
+      "dydx clean.png",
+      "thumb-glb_dydx.png",
+      "dydx.md",
+      "Idle.fbx",
+      "dydx.glb",
+      "dydx example.png",
+      "dydx_mapping.json",
+      "Talking.fbx",
+      "dydx.vrm",
+      "dydx.png",
+      "bust_dydx.png",
+      "cam_dydx.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "eigenlayer",
+    "bustThumbnail": "eigenlayer/thumb-bust_eigenlayer.png",
+    "glbThumbnail": "eigenlayer/thumb-glb_eigenlayer.png",
+    "models": [
+      "eigenlayer.vrm",
+      "eigenlayer.glb"
+    ],
+    "markdown": "eigenlayer.md",
+    "allFiles": [
+      "eigenlayer.png",
+      "eigenlayer clean.png",
+      "Sitting.fbx",
+      "Walking.fbx",
+      "bust_eigenlayer.png",
+      "Sit Talking.fbx",
+      "glb_eigenlayer.png",
+      "bust_eigenlayer2.png",
+      "shaded.png",
+      "cam_eigenlayer.png",
+      "thumb-glb_eigenlayer.png",
+      "thumb-bust_eigenlayer2.png",
+      "eigenlayer_mapping.json",
+      "eigenlayer.vrm",
+      "eigen.fbx",
+      "Idle.fbx",
+      "thumb-bust_eigenlayer.png",
+      "Talking.fbx",
+      "eigenlayer.glb",
+      "eigenlayer.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "eliza",
+    "bustThumbnail": "eliza/thumb-bust_eliza.png",
+    "glbThumbnail": "eliza/thumb-glb_eliza.png",
+    "models": [
+      "eliza.vrm",
+      "eliza_hat.vrm",
+      "eliza.glb"
+    ],
+    "markdown": "eliza.md",
+    "allFiles": [
+      "eliza_hat.png",
+      "glb_eliza.png",
+      "eliza.png",
+      "thumb-bust_eliza.png",
+      "eliza.vrm",
+      "bust_eliza.png",
+      "eliza_hat.vrm",
+      "eliza.md",
+      "thumb-glb_eliza.png",
+      "eliza.glb"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "emblem-vault",
+    "bustThumbnail": null,
+    "glbThumbnail": null,
+    "models": [],
+    "markdown": null,
+    "allFiles": [
+      "17AF4B93-064E-4A9C-8826-400E35B6B482.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "ens",
+    "bustThumbnail": "ens/thumb-bust_ens.png",
+    "glbThumbnail": "ens/thumb-glb_ens.png",
+    "models": [
+      "ens.vrm",
+      "ens.glb"
+    ],
+    "markdown": "ens.md",
+    "allFiles": [
+      "thumb-glb_ens.png",
+      "ens.png",
+      "bust_ens.png",
+      "thumb-bust_ens.png",
+      "ens_mapping.json",
+      "ens.vrm",
+      "glb_ens.png",
+      "ens.glb",
+      "ens.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "etherfi",
+    "bustThumbnail": "etherfi/thumb-bust_etherfi.png",
+    "glbThumbnail": "etherfi/thumb-glb_etherfi.png",
+    "models": [
+      "etherfi.glb",
+      "etherfi.vrm"
+    ],
+    "markdown": "etherfi.md",
+    "allFiles": [
+      "thumb-glb_etherfi.png",
+      "thumb-bust_etherfi.png",
+      "etherfi.png",
+      "etherfi.glb",
+      "glb_etherfi.png",
+      "bust_etherfi.png",
+      "etherfi.md",
+      "etherfi.vrm",
+      "etherfi_mapping.json"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "euler",
+    "bustThumbnail": "euler/thumb-bust_euler.png",
+    "glbThumbnail": "euler/thumb-glb_euler.png",
+    "models": [
+      "euler.glb",
+      "euler.vrm"
+    ],
+    "markdown": "euler.md",
+    "allFiles": [
+      "thumb-bust_euler.png",
+      "bust_euler.png",
+      "thumb-glb_euler.png",
+      "euler.glb",
+      "euler.md",
+      "euler_mapping.json",
+      "euler.vrm",
+      "glb_euler.png",
+      "euler.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "flashbots",
+    "bustThumbnail": "flashbots/thumb-bust_flashbots.png",
+    "glbThumbnail": "flashbots/thumb-glb_flashbots.png",
+    "models": [
+      "flashbots.vrm",
+      "flashbots.glb"
+    ],
+    "markdown": "flashbots.md",
+    "allFiles": [
+      "thumb-glb_flashbots.png",
+      "thumb-bust_flashbots.png",
+      "bust_flashbots.png",
+      "flashbots.png",
+      "glb_flashbots.png",
+      "flashbots.vrm",
+      "flashbots.glb",
+      "flashbots.md",
+      "flashbots_mapping.json"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "fluid",
+    "bustThumbnail": "fluid/thumb-bust_fluid.png",
+    "glbThumbnail": "fluid/thumb-glb_fluid.png",
+    "models": [
+      "fluid.vrm",
+      "fluid.glb"
+    ],
+    "markdown": "fluid.md",
+    "allFiles": [
+      "thumb-bust_fluid.png",
+      "bust_fluid.png",
+      "thumb-glb_fluid.png",
+      "Fluid A frame.png",
+      "glb_fluid.png",
+      "fluid.md",
+      "fluid.png",
+      "fluid.vrm",
+      "fluid.glb"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "frax",
+    "bustThumbnail": "frax/thumb-bust_frax.png",
+    "glbThumbnail": "frax/thumb-glb_frax.png",
+    "models": [
+      "frax.glb",
+      "frax.vrm"
+    ],
+    "markdown": "frax.md",
+    "allFiles": [
+      "thumb-bust_frax.png",
+      "thumb-glb_frax.png",
+      "glb_frax.png",
+      "frax.png",
+      "frax.md",
+      "bust_frax.png",
+      "frax.glb",
+      "frax_mapping.json",
+      "frax.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "fuel",
+    "bustThumbnail": "fuel/thumb-bust_fuel.png",
+    "glbThumbnail": "fuel/thumb-glb_fuel.png",
+    "models": [
+      "fuel.glb",
+      "fuel.vrm"
+    ],
+    "markdown": "fuel.md",
+    "allFiles": [
+      "fuel.glb",
+      "fuel.md",
+      "fuel clean.png",
+      "fuel.vrm",
+      "fuel_mapping.json",
+      "bust_fuel.png",
+      "fuel clean 2.png",
+      "glb_fuel.png",
+      "thumb-glb_fuel.png",
+      "thumb-bust_fuel.png",
+      "fuel.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "gates",
+    "bustThumbnail": "gates/thumb-bust_gates.png",
+    "glbThumbnail": null,
+    "models": [
+      "gates.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "gates.vrm",
+      "thumb-bust_gates.png",
+      "gates.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "george-droyd",
+    "bustThumbnail": "george-droyd/thumb-bust_george-droyd.png",
+    "glbThumbnail": null,
+    "models": [
+      "george-droyd.vrm"
+    ],
+    "markdown": "george-droyd.md",
+    "allFiles": [
+      "george-droyd.md",
+      "george-droyd.png",
+      "george-droyd.vrm",
+      "thumb-bust_george-droyd.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "gitcoin",
+    "bustThumbnail": "gitcoin/thumb-bust_gitcoin.png",
+    "glbThumbnail": "gitcoin/thumb-glb_gitcoin.png",
+    "models": [
+      "gitcoin.vrm",
+      "gitcoin.glb"
+    ],
+    "markdown": "gitcoin.md",
+    "allFiles": [
+      "glb_gitcoin.png",
+      "Sitting.fbx",
+      "Walking.fbx",
+      "gitcoin.png",
+      "thumb-glb_gitcoin.png",
+      "gitcoin.md",
+      "thumb-bust_gitcoin.png",
+      "Gitcoin A frame.png",
+      "cam_gitcoin.png",
+      "gitcoin.vrm",
+      "Sitting Talking.fbx",
+      "Talking.fbx",
+      "bust_gitcoin.png",
+      "gitcoin_mapping.json",
+      "cam_gitcoin2.png",
+      "gitcoin.glb"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "gmx",
+    "bustThumbnail": "gmx/thumb-bust_gmx.png",
+    "glbThumbnail": "gmx/thumb-glb_gmx.png",
+    "models": [
+      "gmx.vrm",
+      "gmx.glb"
+    ],
+    "markdown": "gmx.md",
+    "allFiles": [
+      "glb_gmx.png",
+      "gmx.vrm",
+      "thumb-bust_gmx.png",
+      "gmx.png",
+      "gmx_mapping.json",
+      "bust_gmx.png",
+      "gmx.md",
+      "thumb-glb_gmx.png",
+      "gmx.glb"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "gnon",
+    "bustThumbnail": "gnon/thumb-bust_gnon.png",
+    "glbThumbnail": "gnon/thumb-glb_gnon.png",
+    "models": [
+      "gnon.vrm",
+      "gnon.glb"
+    ],
+    "markdown": "gnon.md",
+    "allFiles": [
+      "glb_gnon.png",
+      "thumb-bust_gnon.png",
+      "gnon.vrm",
+      "gnon clean.png",
+      "gnon.md",
+      "bust_gnon.png",
+      "gnon_mapping.json",
+      "thumb-glb_gnon.png",
+      "gnon.png",
+      "gnon.glb"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "gnosis",
+    "bustThumbnail": "gnosis/thumb-bust_gnosis.png",
+    "glbThumbnail": "gnosis/thumb-glb_gnosis.png",
+    "models": [
+      "gnosis.glb",
+      "gnosis.vrm"
+    ],
+    "markdown": "gnosis.md",
+    "allFiles": [
+      "gnosis_mapping.json",
+      "thumb-glb_gnosis.png",
+      "gnosis.md",
+      "gnosis.glb",
+      "thumb-bust_gnosis.png",
+      "glb_gnosis.png",
+      "gnosis.vrm",
+      "gnosis.png",
+      "bust_gnosis.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "heurist",
+    "bustThumbnail": null,
+    "glbThumbnail": null,
+    "models": [],
+    "markdown": null,
+    "allFiles": [
+      "heurist_2.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "hpos",
+    "bustThumbnail": "hpos/thumb-bust_hpos.png",
+    "glbThumbnail": null,
+    "models": [
+      "hpos.vrm"
+    ],
+    "markdown": "hpos.md",
+    "allFiles": [
+      "thumb-bust_hpos.png",
+      "hpos.md",
+      "hpos.png",
+      "hpos.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "hyperfy",
+    "bustThumbnail": "hyperfy/thumb-bust_hyperfy.png",
+    "glbThumbnail": "hyperfy/thumb-glb_hyperfy.png",
+    "models": [
+      "hyperfy.glb",
+      "hyperfy.vrm"
+    ],
+    "markdown": "hyperfy.md",
+    "allFiles": [
+      "hyperfy_mapping.json",
+      "hyperfy.png",
+      "thumb-bust_hyperfy.png",
+      "hyperfy.glb",
+      "bust_hyperfy.png",
+      "hyperfy.vrm",
+      "thumb-glb_hyperfy.png",
+      "glb_hyperfy.png",
+      "hyperfy.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "iq6900",
+    "bustThumbnail": "iq6900/thumb-bust_iq6900.png",
+    "glbThumbnail": null,
+    "models": [
+      "iq6900.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "thumb-bust_iq6900.png",
+      "Q_iq.blend",
+      "iq6900.png",
+      "iq6900.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "jin-ai16z",
+    "bustThumbnail": "jin-ai16z/thumb-bust_jin-ai16z.png",
+    "glbThumbnail": null,
+    "models": [
+      "jin-ai16z.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "jin-ai16z.png",
+      "thumb-bust_jin-ai16z.png",
+      "jin-ai16z.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "joe-coin",
+    "bustThumbnail": "joe-coin/thumb-bust_joe-coin.png",
+    "glbThumbnail": null,
+    "models": [
+      "joe-coin.vrm"
+    ],
+    "markdown": "joe-coin.md",
+    "allFiles": [
+      "joe-coin.png",
+      "thumb-bust_joe-coin.png",
+      "joe-coin.md",
+      "joe-coin.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "jupiter",
+    "bustThumbnail": "jupiter/thumb-bust_jupiter.png",
+    "glbThumbnail": "jupiter/thumb-glb_jupiter.png",
+    "models": [
+      "jupiter.vrm",
+      "jupiter.glb"
+    ],
+    "markdown": "jupiter.md",
+    "allFiles": [
+      "jupiter.png",
+      "thumb-glb_jupiter.png",
+      "jupiter.vrm",
+      "jupiter.glb",
+      "glb_jupiter.png",
+      "bust_jupiter.png",
+      "jupiter_mapping.json",
+      "thumb-bust_jupiter.png",
+      "jupiter.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "lain",
+    "bustThumbnail": null,
+    "glbThumbnail": null,
+    "models": [],
+    "markdown": null,
+    "allFiles": [],
+    "hasContent": true
+  },
+  {
+    "name": "lido",
+    "bustThumbnail": "lido/thumb-bust_lido.png",
+    "glbThumbnail": "lido/thumb-glb_lido.png",
+    "models": [
+      "lido.glb",
+      "lido.vrm"
+    ],
+    "markdown": "lido.md",
+    "allFiles": [
+      "lido.glb",
+      "lido.png",
+      "lido_mapping.json",
+      "bust_lido.png",
+      "thumb-glb_lido.png",
+      "glb_lido.png",
+      "lido.md",
+      "thumb-bust_lido.png",
+      "lido.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "magic-eden",
+    "bustThumbnail": "magic-eden/thumb-bust_magic-eden.png",
+    "glbThumbnail": "magic-eden/thumb-glb_magic-eden.png",
+    "models": [
+      "magic-eden.vrm",
+      "magic-eden.glb"
+    ],
+    "markdown": "magic-eden.md",
+    "allFiles": [
+      "magic-eden.vrm",
+      "glb_magic-eden.png",
+      "thumb-glb_magic-eden.png",
+      "magic-eden_mapping.json",
+      "magic-eden.png",
+      "magic-eden.glb",
+      "thumb-bust_magic-eden.png",
+      "magiceden.png",
+      "magic-eden.md",
+      "bust_magic-eden.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "marc",
+    "bustThumbnail": "marc/thumb-bust_marc.png",
+    "glbThumbnail": "marc/thumb-glb_marc.png",
+    "models": [
+      "marc.vrm",
+      "marc.glb"
+    ],
+    "markdown": "marc.md",
+    "allFiles": [
+      "thumb-bust_marc.png",
+      "bust_marc.png",
+      "thumb-glb_marc.png",
+      "marc.vrm",
+      "glb_marc.png",
+      "marc.md",
+      "marc.glb",
+      "marc.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "marie-rose",
+    "bustThumbnail": "marie-rose/thumb-bust_marie-rose.png",
+    "glbThumbnail": null,
+    "models": [
+      "marie-rose.vrm"
+    ],
+    "markdown": "marie-rose.md",
+    "allFiles": [
+      "marie-rose.md",
+      "marie-rose.vrm",
+      "thumb-bust_marie-rose.png",
+      "marie-rose.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "mcafee",
+    "bustThumbnail": "mcafee/thumb-bust_mcafee.png",
+    "glbThumbnail": null,
+    "models": [
+      "mcafee.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "thumb-bust_mcafee.png",
+      "mcafee.png",
+      "mcafee.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "mesh11a",
+    "bustThumbnail": "mesh11a/thumb-bust_mesh11a.png",
+    "glbThumbnail": null,
+    "models": [
+      "mesh11a.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "mesh11a.vrm",
+      "thumb-bust_mesh11a.png",
+      "mesh11a.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "mog-tubby",
+    "bustThumbnail": "mog-tubby/thumb-bust_mog-tubby.png",
+    "glbThumbnail": null,
+    "models": [
+      "mog-tubby.vrm"
+    ],
+    "markdown": "mog-tubby.md",
+    "allFiles": [
+      "mog-tubby.blend",
+      "mog-tubby.png",
+      "thumb-bust_mog-tubby.png",
+      "mog-tubby.vrm",
+      "mog-tubby.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "monero-chan",
+    "bustThumbnail": "monero-chan/thumb-bust_monero-chan.png",
+    "glbThumbnail": null,
+    "models": [
+      "monero-chan.vrm"
+    ],
+    "markdown": "monero-chan.md",
+    "allFiles": [
+      "monero-chan.png",
+      "monero-chan.md",
+      "thumb-bust_monero-chan.png",
+      "monero-chan.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "moonwell",
+    "bustThumbnail": "moonwell/thumb-bust_moonwell.png",
+    "glbThumbnail": "moonwell/thumb-glb_moonwell.png",
+    "models": [
+      "moonwell.glb",
+      "moonwell.vrm"
+    ],
+    "markdown": "moonwell.md",
+    "allFiles": [
+      "moonwell.md",
+      "bust_moonwell.png",
+      "moonwell_mapping.json",
+      "thumb-glb_moonwell.png",
+      "moonwell human.png",
+      "moonwell.glb",
+      "moonwell.vrm",
+      "moonwell.png",
+      "glb_moonwell.png",
+      "thumb-bust_moonwell.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "morpho",
+    "bustThumbnail": "morpho/thumb-bust_morpho.png",
+    "glbThumbnail": "morpho/thumb-glb_morpho.png",
+    "models": [
+      "morpho.glb",
+      "morpho.vrm"
+    ],
+    "markdown": "morpho.md",
+    "allFiles": [
+      "thumb-bust_morpho.png",
+      "morpho_mapping.json",
+      "thumb-glb_morpho.png",
+      "bust_morpho.png",
+      "morpho.png",
+      "morpho.glb",
+      "morpho.vrm",
+      "morpho.md",
+      "glb_morpho.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "nifty-island",
+    "bustThumbnail": "nifty-island/thumb-bust_nifty-island.png",
+    "glbThumbnail": "nifty-island/thumb-glb_nifty-island.png",
+    "models": [
+      "nifty-island.vrm",
+      "nifty-island.glb"
+    ],
+    "markdown": "nifty-island.md",
+    "allFiles": [
+      "bust_nifty-island.png",
+      "thumb-bust_nifty-island.png",
+      "nifty-island.fbx",
+      "thumb-glb_nifty-island.png",
+      "nifty-island.png",
+      "glb_nifty-island.png",
+      "nifty-island.vrm",
+      "nifty-island.glb",
+      "nifty-island.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "octant",
+    "bustThumbnail": "octant/thumb-bust_octant.png",
+    "glbThumbnail": "octant/thumb-glb_octant.png",
+    "models": [
+      "octant.glb"
+    ],
+    "markdown": "octant.md",
+    "allFiles": [
+      "thumb-bust_octant.png",
+      "octant.glb",
+      "glb_octant.png",
+      "octant.md",
+      "bust_octant.png",
+      "thumb-glb_octant.png",
+      "octant.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "optimism",
+    "bustThumbnail": "optimism/thumb-bust_optimism.png",
+    "glbThumbnail": "optimism/thumb-glb_optimism.png",
+    "models": [
+      "optimism.glb",
+      "optimism.vrm"
+    ],
+    "markdown": "optimism.md",
+    "allFiles": [
+      "glb_optimism.png",
+      "Sitting.fbx",
+      "Walking.fbx",
+      "thumb-glb_optimism.png",
+      "optimism.glb",
+      "optimism.vrm",
+      "Sitting Talking.fbx",
+      "optimism.png",
+      "Idle.fbx",
+      "bust_optimism.png",
+      "thumb-bust_optimism.png",
+      "optimism.fbx",
+      "optimism_mapping.json",
+      "Optimism A frame.png",
+      "Talking.fbx",
+      "cam_optimism.png",
+      "optimism.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "paladin",
+    "bustThumbnail": "paladin/thumb-bust_paladin.png",
+    "glbThumbnail": "paladin/thumb-glb_paladin.png",
+    "models": [
+      "paladin.glb",
+      "paladin.vrm"
+    ],
+    "markdown": "paladin.md",
+    "allFiles": [
+      "bust_paladin.png",
+      "paladin.png",
+      "paladin.md",
+      "Sitting.fbx",
+      "Walking.fbx",
+      "paladin_mapping.json",
+      "thumb-bust_paladin.png",
+      "cam_paladin.png",
+      "thumb-glb_paladin.png",
+      "shaded.png",
+      "glb_paladin.png",
+      "paladin.glb",
+      "Paladin Clean.png",
+      "paladin.vrm",
+      "Sitting Talking.fbx",
+      "Idle.fbx",
+      "Talking.fbx",
+      "Paladin A frame.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "patchwork-naval",
+    "bustThumbnail": "patchwork-naval/thumb-bust_patchwork-naval.png",
+    "glbThumbnail": null,
+    "models": [
+      "patchwork-naval.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "patchwork-naval.png",
+      "patchwork-naval.vrm",
+      "thumb-bust_patchwork-naval.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "peepo",
+    "bustThumbnail": "peepo/thumb-bust_peepo.png",
+    "glbThumbnail": "peepo/thumb-glb_peepo.png",
+    "models": [
+      "peepo.glb",
+      "peepo.vrm"
+    ],
+    "markdown": "peepo.md",
+    "allFiles": [
+      "peepo.png",
+      "peepo.md",
+      "glb_peepo.png",
+      "peepo.glb",
+      "thumb-bust_peepo.png",
+      "thumb-glb_peepo.png",
+      "peepo.vrm",
+      "peepo_mapping.json",
+      "bust_peepo.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "pixel",
+    "bustThumbnail": "pixel/thumb-bust_pixel.png",
+    "glbThumbnail": null,
+    "models": [
+      "pixel.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "pixel.png",
+      "thumb-bust_pixel.png",
+      "pixel.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "polygon",
+    "bustThumbnail": "polygon/thumb-bust_polygon.png",
+    "glbThumbnail": "polygon/thumb-glb_polygon.png",
+    "models": [
+      "polygon.glb",
+      "polygon.vrm",
+      "polygon2.glb"
+    ],
+    "markdown": "polygon.md",
+    "allFiles": [
+      "polygon.glb",
+      "thumb-bust_polygon.png",
+      "polygon.png",
+      "polygon 2.png",
+      "glb_polygon.png",
+      "bust_polygon.png",
+      "polygon_mapping.json",
+      "polygon.vrm",
+      "polygon 3.png",
+      "polygon2.glb",
+      "polygon.md",
+      "thumb-glb_polygon.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "reserve",
+    "bustThumbnail": "reserve/thumb-bust_reserve.png",
+    "glbThumbnail": "reserve/thumb-glb_reserve.png",
+    "models": [
+      "reserve.glb",
+      "reserve.vrm"
+    ],
+    "markdown": "reserve.md",
+    "allFiles": [
+      "reserve.png",
+      "reserve_mapping.json",
+      "bust_reserve.png",
+      "thumb-glb_reserve.png",
+      "reserve.glb",
+      "glb_reserve.png",
+      "thumb-bust_reserve.png",
+      "reserve.md",
+      "reserve.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "retardio",
+    "bustThumbnail": "retardio/thumb-bust_retardio.png",
+    "glbThumbnail": null,
+    "models": [
+      "Retardio_015.vrm",
+      "Retardio_002.vrm",
+      "Retardio_013.vrm",
+      "Retardio_010.vrm",
+      "Retardio_016.vrm",
+      "Retardio_001.vrm",
+      "Retardio_012.vrm",
+      "Retardio_009.vrm",
+      "Retardio_008.vrm",
+      "Retardio_003.vrm",
+      "Retardio_014.vrm",
+      "Retardio_011.vrm"
+    ],
+    "markdown": "retardio.md",
+    "allFiles": [
+      "Retardio_010.png",
+      "thumb-bust_retardio.png",
+      "Retardio_014.png",
+      "Retardio_015.png",
+      "Retardio_015.vrm",
+      "Retardio_012.png",
+      "Retardio_016.png",
+      "retardio.md",
+      "Retardio_009.png",
+      "Retardio_001.png",
+      "Retardio_002.vrm",
+      "Retardio_013.vrm",
+      "Retardio_003.png",
+      "Retardio_010.vrm",
+      "Retardio_008.png",
+      "Retardio_016.vrm",
+      "Retardio_001.vrm",
+      "Retardio_012.vrm",
+      "Retardio_011.png",
+      "Retardio_002.png",
+      "Retardio_009.vrm",
+      "Retardio_008.vrm",
+      "Retardio_003.vrm",
+      "Retardio_014.vrm",
+      "Retardio_013.png",
+      "Retardio_011.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "rocketpool",
+    "bustThumbnail": "rocketpool/thumb-bust_rocketpool.png",
+    "glbThumbnail": "rocketpool/thumb-glb_rocketpool.png",
+    "models": [
+      "rocketpool.glb",
+      "rocketpool.vrm"
+    ],
+    "markdown": "rocketpool.md",
+    "allFiles": [
+      "rocketpool.png",
+      "rocketpool.glb",
+      "bust_rocketpool.png",
+      "rocketpool.vrm",
+      "rocketpool_mapping.json",
+      "thumb-bust_rocketpool.png",
+      "rocketpool.md",
+      "glb_rocketpool.png",
+      "thumb-glb_rocketpool.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "ropraito",
+    "bustThumbnail": "ropraito/thumb-bust_ropraito.png",
+    "glbThumbnail": "ropraito/thumb-glb_ropraito.png",
+    "models": [
+      "ropraito.vrm",
+      "ropraito.glb",
+      "ropraito2.glb"
+    ],
+    "markdown": "ropraito.md",
+    "allFiles": [
+      "ropraito.vrm",
+      "thumb-glb_ropraito.png",
+      "ropraito.md",
+      "ropraito_clean.png",
+      "thumb-bust_ropraito.png",
+      "ropraito.png",
+      "bust_ropraito.png",
+      "glb_ropraito.png",
+      "ropraito.glb",
+      "ropraito2.glb"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "safe",
+    "bustThumbnail": "safe/thumb-bust_safe.png",
+    "glbThumbnail": "safe/thumb-glb_safe.png",
+    "models": [
+      "safe.glb",
+      "safe.vrm"
+    ],
+    "markdown": "safe.md",
+    "allFiles": [
+      "safe.glb",
+      "news render.png",
+      "safedao.txt",
+      "Sitting.fbx",
+      "Walking.fbx",
+      "thumb-glb_safe.png",
+      "glb_safe.png",
+      "safe_mapping.json",
+      "safe.vrm",
+      "safe.md",
+      "thumb-bust_safe.png",
+      "shaded.png",
+      "bust_safe.png",
+      "Sitting Talking.fbx",
+      "Idle.fbx",
+      "safe.png",
+      "SafeDAO A frame.png",
+      "Talking.fbx",
+      "SafeDAO clean.png",
+      "cam_safe.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "scroll",
+    "bustThumbnail": "scroll/thumb-bust_scroll.png",
+    "glbThumbnail": "scroll/thumb-glb_scroll.png",
+    "models": [
+      "scroll.vrm",
+      "scroll.glb"
+    ],
+    "markdown": "scroll.md",
+    "allFiles": [
+      "glb_scroll.png",
+      "scroll_mapping.json",
+      "bust_scroll.png",
+      "scroll.png",
+      "thumb-glb_scroll.png",
+      "thumb-bust_scroll.png",
+      "scroll.md",
+      "scroll.vrm",
+      "scroll.glb"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "sergey",
+    "bustThumbnail": "sergey/thumb-bust_sergey.png",
+    "glbThumbnail": null,
+    "models": [
+      "sergey.vrm"
+    ],
+    "markdown": "sergey.md",
+    "allFiles": [
+      "sergey.png",
+      "sergey.md",
+      "thumb-bust_sergey.png",
+      "sergey.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "shaw-ai",
+    "bustThumbnail": "shaw-ai/thumb-bust_shaw-ai.png",
+    "glbThumbnail": "shaw-ai/thumb-glb_shaw-ai.png",
+    "models": [
+      "shaw-ai.glb",
+      "ShawAI.vrm",
+      "shaw-ai.vrm"
+    ],
+    "markdown": "shaw-ai.md",
+    "allFiles": [
+      "glb_shaw-ai.png",
+      "shaw-ai.md",
+      "shaw-ai.glb",
+      "shaw-ai.png",
+      "ShawAI.vrm",
+      "thumb-bust_shaw-ai.png",
+      "shaw-ai_mapping.json",
+      "thumb-glb_shaw-ai.png",
+      "ShawAI.png",
+      "bust_shaw-ai.png",
+      "shaw-ai.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "silkroad",
+    "bustThumbnail": "silkroad/thumb-bust_silkroad.png",
+    "glbThumbnail": null,
+    "models": [
+      "silkroad.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "thumb-bust_silkroad.png",
+      "silkroad.vrm",
+      "silkroad.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "sky",
+    "bustThumbnail": "sky/thumb-bust_sky.png",
+    "glbThumbnail": "sky/thumb-glb_sky.png",
+    "models": [
+      "sky.glb"
+    ],
+    "markdown": "sky.md",
+    "allFiles": [
+      "thumb-glb_sky.png",
+      "glb_sky.png",
+      "sky.glb",
+      "sky.md",
+      "thumb-bust_sky.png",
+      "sky.png",
+      "bust_sky.png",
+      "Sky A frame.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "soleng",
+    "bustThumbnail": "soleng/thumb-bust_soleng2.png",
+    "glbThumbnail": "soleng/thumb-glb_soleng.png",
+    "models": [
+      "soleng.glb",
+      "soleng2.glb",
+      "soleng.vrm"
+    ],
+    "markdown": "soleng.md",
+    "allFiles": [
+      "soleng.glb",
+      "soleng2.glb",
+      "bust_soleng.png",
+      "thumb-glb_soleng.png",
+      "thumb-bust_soleng.png",
+      "bust_soleng2.png",
+      "soleng_mapping.json",
+      "glb_soleng.png",
+      "thumb-bust_soleng2.png",
+      "soleng-stylized.png",
+      "soleng.vrm",
+      "soleng.png",
+      "soleng.md",
+      "soleng-clean.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "soyjak",
+    "bustThumbnail": "soyjak/thumb-bust_soyjak.png",
+    "glbThumbnail": null,
+    "models": [
+      "soyjak.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "thumb-bust_soyjak.png",
+      "soyjak.png",
+      "soyjak.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "spartan",
+    "bustThumbnail": "spartan/thumb-bust_spartan.png",
+    "glbThumbnail": "spartan/thumb-glb_spartan.png",
+    "models": [
+      "spartan.vrm",
+      "spartan.glb"
+    ],
+    "markdown": "spartan.md",
+    "allFiles": [
+      "bust_spartan.png",
+      "thumb-bust_spartan.png",
+      "spartan.md",
+      "thumb-glb_spartan.png",
+      "spartan.vrm",
+      "glb_spartan.png",
+      "spartan.glb",
+      "spartan.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "spectra",
+    "bustThumbnail": "spectra/thumb-bust_spectra.png",
+    "glbThumbnail": "spectra/thumb-glb_spectra.png",
+    "models": [
+      "spectra.glb",
+      "spectra.vrm",
+      "spectre.glb"
+    ],
+    "markdown": "spectra.md",
+    "allFiles": [
+      "spectra.md",
+      "spectra.png",
+      "spectra.glb",
+      "spectra_mapping.json",
+      "spectra.vrm",
+      "thumb-bust_spectra.png",
+      "bust_spectra.png",
+      "spectre.glb",
+      "thumb-glb_spectra.png",
+      "glb_spectra.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "sproto-gremlin",
+    "bustThumbnail": "sproto-gremlin/thumb-bust_sproto-gremlin.png",
+    "glbThumbnail": null,
+    "models": [
+      "sproto-gremlin.vrm"
+    ],
+    "markdown": "sproto-gremlin.md",
+    "allFiles": [
+      "thumb-bust_sproto-gremlin.png",
+      "sproto-gremlin.vrm",
+      "sproto-gremlin.md",
+      "sproto-gremlin.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "superfluid",
+    "bustThumbnail": "superfluid/thumb-bust_superfluid.png",
+    "glbThumbnail": "superfluid/thumb-glb_superfluid.png",
+    "models": [
+      "fluid.vrm",
+      "superfluid.glb"
+    ],
+    "markdown": "superfluid.md",
+    "allFiles": [
+      "bust_superfluid.png",
+      "thumb-glb_superfluid.png",
+      "superfluid.md",
+      "fluid.png",
+      "fluid_mapping.json",
+      "fluid.vrm",
+      "superfluid.glb",
+      "superfluid.png",
+      "thumb-bust_superfluid.png",
+      "glb_superfluid.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "the-graph",
+    "bustThumbnail": "the-graph/thumb-bust_the-graph.png",
+    "glbThumbnail": "the-graph/thumb-glb_the-graph.png",
+    "models": [
+      "the-graph.vrm",
+      "the-graph.glb"
+    ],
+    "markdown": "the-graph.md",
+    "allFiles": [
+      "glb_the-graph.png",
+      "thumb-bust_the-graph.png",
+      "thumb-glb_the-graph.png",
+      "graph_mapping.json",
+      "the-graph.png",
+      "the-graph.vrm",
+      "bust_the-graph.png",
+      "the-graph.md",
+      "the-graph.glb"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "tron",
+    "bustThumbnail": "tron/thumb-bust_tron.png",
+    "glbThumbnail": "tron/thumb-glb_tron.png",
+    "models": [
+      "tron.glb",
+      "tron.vrm"
+    ],
+    "markdown": "tron.md",
+    "allFiles": [
+      "tron.glb",
+      "tron.png",
+      "bust_tron2.png",
+      "glb_tron.png",
+      "tron_mapping.json",
+      "tron.vrm",
+      "bust_tron.png",
+      "thumb-bust_tron2.png",
+      "thumb-glb_tron.png",
+      "thumb-bust_tron.png",
+      "tron.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "tubby-kun",
+    "bustThumbnail": "tubby-kun/thumb-bust_tubby-kun.png",
+    "glbThumbnail": null,
+    "models": [
+      "tubby-kun.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "thumb-bust_tubby-kun.png",
+      "tubby-kun.vrm",
+      "tubby-kun.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "uniswap",
+    "bustThumbnail": "uniswap/thumb-bust_uniswap.png",
+    "glbThumbnail": "uniswap/thumb-glb_uniswap.png",
+    "models": [
+      "uniswap.vrm",
+      "uniswap.glb"
+    ],
+    "markdown": "uniswap.md",
+    "allFiles": [
+      "bust_uniswap.png",
+      "uniswap clean.png",
+      "thumb-bust_uniswap.png",
+      "uniswap.vrm",
+      "thumb-glb_uniswap.png",
+      "uniswap.md",
+      "glb_uniswap.png",
+      "uniswap.glb",
+      "uniswap side.png",
+      "uniswap.png",
+      "uniswap_mapping.json"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "venus",
+    "bustThumbnail": "venus/thumb-bust_venus.png",
+    "glbThumbnail": "venus/thumb-glb_venus.png",
+    "models": [
+      "venus.vrm",
+      "venus.glb"
+    ],
+    "markdown": "venus.md",
+    "allFiles": [
+      "venus.vrm",
+      "venus.glb",
+      "thumb-glb_venus.png",
+      "bust_venus.png",
+      "glb_venus.png",
+      "venus_mapping.json",
+      "thumb-bust_venus.png",
+      "venus.png",
+      "venus.md"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "vitalik",
+    "bustThumbnail": "vitalik/thumb-bust_vitalik.png",
+    "glbThumbnail": "vitalik/thumb-glb_vitalik.png",
+    "models": [
+      "vitalik.glb",
+      "vitalik4.vrm",
+      "vitalik.vrm"
+    ],
+    "markdown": "vitalik.md",
+    "allFiles": [
+      "vitalik.glb",
+      "glb_vitalik.png",
+      "vitalik.png",
+      "thumb-bust_vitalik.png",
+      "vitalik4.png",
+      "bust_vitalik.png",
+      "vitalik.md",
+      "vitalik4.vrm",
+      "vitalik.vrm",
+      "thumb-glb_vitalik.png",
+      "vitalik.fbx"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "yakub",
+    "bustThumbnail": "yakub/thumb-bust_yakub.png",
+    "glbThumbnail": null,
+    "models": [
+      "yakub.vrm"
+    ],
+    "markdown": "yakub.md",
+    "allFiles": [
+      "yakub.md",
+      "yakub.blend",
+      "yakub.vrm",
+      "thumb-bust_yakub.png",
+      "yakub.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "zcash",
+    "bustThumbnail": "zcash/thumb-bust_zcash.png",
+    "glbThumbnail": null,
+    "models": [
+      "zcash.vrm"
+    ],
+    "markdown": "zcash.md",
+    "allFiles": [
+      "zcash.png",
+      "zcash.md",
+      "thumb-bust_zcash.png",
+      "zcash.vrm"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "zerebro",
+    "bustThumbnail": "zerebro/thumb-bust_zerebro.png",
+    "glbThumbnail": "zerebro/thumb-glb_zerebro.png",
+    "models": [
+      "zerebro.glb",
+      "zerebro.vrm"
+    ],
+    "markdown": "zerebro.md",
+    "allFiles": [
+      "zerebro.md",
+      "bust_zerebro.png",
+      "zerebro.glb",
+      "zerebro.png",
+      "thumb-bust_zerebro.png",
+      "thumb-glb_zerebro.png",
+      "zerebro.vrm",
+      "zerebro_mapping.json",
+      "glb_zerebro.png"
+    ],
+    "hasContent": true
+  },
+  {
+    "name": "zuck",
+    "bustThumbnail": "zuck/thumb-bust_zuck.png",
+    "glbThumbnail": null,
+    "models": [
+      "zuck.vrm"
+    ],
+    "markdown": null,
+    "allFiles": [
+      "thumb-bust_zuck.png",
+      "zuck.png",
+      "zuck.vrm"
+    ],
+    "hasContent": true
+  }
+];
+        let filteredAvatars = [...avatars];
+        
+        // DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const sortSelect = document.getElementById('sortSelect');
+        const resultsCount = document.getElementById('resultsCount');
+        const avatarGrid = document.getElementById('avatarGrid');
+        const emptyState = document.getElementById('emptyState');
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const modalClose = document.getElementById('modalClose');
+        
+        // Event listeners
+        searchInput.addEventListener('input', handleSearch);
+        sortSelect.addEventListener('change', handleSort);
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+            if (e.key === '/' && !modal.classList.contains('active')) {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+        
+        function handleSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            filteredAvatars = avatars.filter(avatar => 
+                avatar.name.toLowerCase().includes(searchTerm)
+            );
+            sortAvatars();
+            renderAvatars();
+            updateResultsCount();
+        }
+        
+        function handleSort() {
+            sortAvatars();
+            renderAvatars();
+        }
+        
+        function sortAvatars() {
+            const sortBy = sortSelect.value;
+            filteredAvatars.sort((a, b) => {
+                if (sortBy === 'name') {
+                    return a.name.localeCompare(b.name);
+                } else {
+                    return b.models.length - a.models.length;
+                }
+            });
+        }
+        
+        function renderAvatars() {
+            if (filteredAvatars.length === 0) {
+                avatarGrid.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            avatarGrid.style.display = 'grid';
+            emptyState.style.display = 'none';
+            avatarGrid.innerHTML = filteredAvatars.map(avatar => createAvatarCard(avatar)).join('');
+            
+            // Setup click handlers
+            document.querySelectorAll('.avatar-card').forEach((card, index) => {
+                card.addEventListener('click', () => openModal(filteredAvatars[index]));
+            });
+        }
+        
+        function createAvatarCard(avatar) {
+            const placeholder = avatar.name.charAt(0).toUpperCase();
+            const thumbnailSrc = avatar.bustThumbnail || avatar.glbThumbnail;
+
+            return `
+                <div class="avatar-card">
+                    <div class="avatar-image">
+                        ${thumbnailSrc ?
+                            `<img src="${thumbnailSrc}" alt="${avatar.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='${placeholder}';">` :
+                            placeholder
+                        }
+                    </div>
+                    <div class="avatar-content">
+                        <h3 class="avatar-title">${avatar.name}</h3>
+                        <div class="avatar-meta">
+                            ${avatar.models.length > 0 ? 
+                                `<span class="badge">${avatar.models.length} model${avatar.models.length !== 1 ? 's' : ''}</span>` : 
+                                ''
+                            }
+                            ${avatar.markdown ? '<span class="badge bio">Bio</span>' : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function openModal(avatar) {
+            modalTitle.textContent = avatar.name + ' - Directory Contents';
+            modalContent.innerHTML = createModalContent(avatar);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function createModalContent(avatar) {
+            const getFileIcon = (filename) => {
+                if (filename.endsWith('.png') || filename.endsWith('.jpg')) return '🖼️';
+                if (filename.endsWith('.glb')) return '🎲';
+                if (filename.endsWith('.vrm')) return '👤';
+                if (filename.endsWith('.md')) return '📝';
+                if (filename.endsWith('.json')) return '📋';
+                if (filename.endsWith('.fbx')) return '🎭';
+                return '📄';
+            };
+            
+            const getFileType = (filename) => {
+                return filename.split('.').pop()?.toUpperCase() || '';
+            };
+            
+            const getFileSize = () => {
+                const sizes = ['1.2MB', '850KB', '2.3MB', '450KB', '1.8MB', '3.1MB', '720KB'];
+                return sizes[Math.floor(Math.random() * sizes.length)];
+            };
+            
+            const thumbnailCount = [avatar.bustThumbnail, avatar.glbThumbnail].filter(Boolean).length;
+            
+            return `
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Models:</span>
+                        <span class="info-value">${avatar.models.length}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Has Bio:</span>
+                        <span class="info-value">${avatar.markdown ? 'Yes' : 'No'}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Thumbnails:</span>
+                        <span class="info-value">${thumbnailCount}</span>
+                    </div>
+                </div>
+
+                <div class="view-toggle">
+                    <button class="view-toggle-btn active" onclick="toggleView('grid')">🎛️ Grid</button>
+                    <button class="view-toggle-btn" onclick="toggleView('list')">📄 List</button>
+                </div>
+
+                <div class="file-listing">
+                    <h3 class="file-listing-title">📁 ${avatar.name}/</h3>
+
+                    <div id="filesGrid" class="files-grid">
+                        ${avatar.allFiles.map(file => `
+                            <a href="${avatar.name}/${file}" class="file-grid-item" download="${file}">
+                                <div class="file-grid-icon">${getFileIcon(file)}</div>
+                                <div class="file-grid-name">${file}</div>
+                                <div class="file-grid-size">${getFileSize()}</div>
+                            </a>
+                        `).join('')}
+                    </div>
+
+                    <div id="filesList" class="files-list hidden">
+                        ${avatar.allFiles.map(file => `
+                            <a href="${avatar.name}/${file}" class="file-item" download="${file}">
+                                <div class="file-info">
+                                    <span class="file-icon">${getFileIcon(file)}</span>
+                                    <span class="file-name">${file}</span>
+                                </div>
+                                <div class="file-meta">
+                                    <span class="file-type">${getFileType(file)}</span>
+                                    <span class="file-size">${getFileSize()}</span>
+                                </div>
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+        
+        function updateResultsCount() {
+            resultsCount.textContent = `${filteredAvatars.length} result${filteredAvatars.length !== 1 ? 's' : ''}`;
+        }
+
+        function toggleView(viewType) {
+            const filesGrid = document.getElementById('filesGrid');
+            const filesList = document.getElementById('filesList');
+            const gridBtn = document.querySelector('[onclick="toggleView(\'grid\')"]');
+            const listBtn = document.querySelector('[onclick="toggleView(\'list\')"]');
+
+            if (viewType === 'grid') {
+                filesGrid.classList.remove('hidden');
+                filesList.classList.add('hidden');
+                gridBtn.classList.add('active');
+                listBtn.classList.remove('active');
+            } else {
+                filesGrid.classList.add('hidden');
+                filesList.classList.remove('hidden');
+                gridBtn.classList.remove('active');
+                listBtn.classList.add('active');
+            }
+        }
+
+        // Initialize
+        renderAvatars();
+        
+        // Add some loading animation
+        document.body.style.opacity = '0';
+        window.addEventListener('load', () => {
+            document.body.style.transition = 'opacity 0.3s ease';
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
