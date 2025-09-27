@@ -1,0 +1,86 @@
+name: Update Missing Thumbnails
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run - only validate without generating thumbnails'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  update-thumbnails:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install Python dependencies
+      run: |
+        pip install requests pillow
+
+    - name: Validate repository structure
+      run: |
+        python scripts/validate.py --missing-only
+
+    - name: Generate missing thumbnails (if not dry run)
+      if: ${{ !inputs.dry_run }}
+      env:
+        OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      run: |
+        # Get directories missing bust thumbnails and pipe to thumbnail generator
+        python -c "
+        import sys
+        sys.path.append('scripts')
+        from validate import scan_avatar_directories
+
+        results = scan_avatar_directories('.')
+        missing_dirs = []
+        for avatar in results['missing_thumbnails']:
+            if not avatar['has_bust_thumb']:
+                missing_dirs.append(avatar['directory'])
+
+        if missing_dirs:
+            print(f'Found {len(set(missing_dirs))} directories needing bust thumbnails', file=sys.stderr)
+            for directory in sorted(set(missing_dirs)):
+                print(directory)
+        else:
+            print('No missing bust thumbnails to generate', file=sys.stderr)
+        " | python scripts/thumbnails.py
+
+    - name: Update metadata files
+      if: ${{ !inputs.dry_run }}
+      run: |
+        python scripts/metadata.py --all
+
+    - name: Check for changes
+      if: ${{ !inputs.dry_run }}
+      id: changes
+      run: |
+        if [[ -n $(git status --porcelain) ]]; then
+          echo "changes=true" >> $GITHUB_OUTPUT
+          echo "Changes detected:"
+          git status --short
+        else
+          echo "changes=false" >> $GITHUB_OUTPUT
+          echo "No changes detected"
+        fi
+
+    - name: Commit and push changes
+      if: ${{ !inputs.dry_run && steps.changes.outputs.changes == 'true' }}
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "🤖 Auto-generate missing bust thumbnails
+
+📊 Updated metadata files
+🚀 Generated with GitHub Actions"
+        git push

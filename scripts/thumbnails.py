@@ -224,15 +224,9 @@ def process_dir(dir_path: Path, api_key: str, prompt: str,
 
 def main():
     ap = argparse.ArgumentParser(description="Generate bust thumbnails with transparent background.")
-    ap.add_argument("--list", required=True, help="Text file: one avatar directory per line.")
-    ap.add_argument("--root", default=".", help="Root folder of avatar directories.")
-    ap.add_argument("--prompt-file", help="Optional file to override the default prompt.")
-    ap.add_argument("--size", type=int, default=400, help="Output square size (default 400).")
-    ap.add_argument("--hue-fuzz", type=int, default=18, help="Hue tolerance around bg hue (0-127).")
-    ap.add_argument("--sat-min", type=float, default=0.15, help="Min saturation to consider bg [0..1].")
-    ap.add_argument("--val-min", type=float, default=0.15, help="Min value/brightness for bg [0..1].")
-    ap.add_argument("--retries", type=int, default=3, help="Retries when no image/HTTP error (default 3).")
-    ap.add_argument("--retry-backoff", type=float, default=2.0, help="Base seconds for exponential backoff (default 2.0).")
+    ap.add_argument("-i", "--input-dir", default=".", help="Input directory containing avatar folders (default: current)")
+    ap.add_argument("--prompt", help="Custom prompt (default: uses vn_bust.txt or built-in)")
+    ap.add_argument("--size", type=int, default=400, help="Output square size (default 400)")
     args = ap.parse_args()
 
     api_key = os.getenv("OPENROUTER_API_KEY")
@@ -240,32 +234,36 @@ def main():
         print("ERROR: OPENROUTER_API_KEY not set", file=sys.stderr)
         sys.exit(1)
 
-    root = Path(args.root).resolve()
-    list_file = Path(args.list)
-    if not list_file.exists():
-        print(f"ERROR: List file not found: {list_file}", file=sys.stderr)
-        sys.exit(1)
+    input_dir = Path(args.input_dir).resolve()
 
+    # Load prompt: custom > vn_bust.txt > default
     prompt = DEFAULT_PROMPT
-    if args.prompt_file:
-        txt = Path(args.prompt_file).read_text().strip()
-        if txt:
-            prompt = txt
+    if args.prompt:
+        prompt = args.prompt
+    else:
+        vn_prompt_file = Path("scripts/vn_bust.txt")
+        if vn_prompt_file.exists():
+            prompt = vn_prompt_file.read_text().strip()
 
-    dirs = [ln.strip() for ln in list_file.read_text().splitlines()
-            if ln.strip() and not ln.startswith("#")]
+    # Read directory names from stdin
+    dirs = []
+    for line in sys.stdin:
+        line = line.strip()
+        if line and not line.startswith("#"):
+            dirs.append(line)
+
     if not dirs:
-        print("Nothing to do; list file is empty.", file=sys.stderr)
+        print("Nothing to do; no directories provided via stdin.", file=sys.stderr)
         sys.exit(0)
 
     for rel in dirs:
-        dir_path = (root / rel).resolve()
+        dir_path = (input_dir / rel).resolve()
         try:
             process_dir(
                 dir_path, api_key, prompt,
-                size=args.size, hue_fuzz=args.hue_fuzz,
-                sat_min=args.sat_min, val_min=args.val_min,
-                retries=args.retries, retry_backoff=args.retry_backoff
+                size=args.size, hue_fuzz=18,
+                sat_min=0.15, val_min=0.15,
+                retries=3, retry_backoff=2.0
             )
         except Exception as e:
             print(f"[error] {rel}: {e}", file=sys.stderr)
