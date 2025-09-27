@@ -5,7 +5,7 @@ import glob
 def get_avatar_data(base_dir="."):
     """Scans subdirectories for avatar assets."""
     avatar_data = []
-    excluded_dirs = ["scripts", ".git", "__pycache__"] # Add any other dirs to exclude
+    excluded_dirs = ["scripts", ".git", "__pycache__", "_archives", "_incomplete", "_staging-removal"] # Add any other dirs to exclude
 
     for item in os.listdir(base_dir):
         item_path = os.path.join(base_dir, item)
